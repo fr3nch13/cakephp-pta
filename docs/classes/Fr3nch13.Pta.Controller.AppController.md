@@ -1,4 +1,4 @@
-# [CakePHP Jira Plugin API Documentation](../home)
+# [CakePHP Jira Plugin API Documentation](../home.md)
 
 # Class: \Fr3nch13\Pta\Controller\AppController
 ### Namespace: [\Fr3nch13\Pta\Controller](../namespaces/Fr3nch13.Pta.Controller.md)
@@ -23,14 +23,14 @@
 
 ### Top Namespaces
 
-* [\Fr3nch13](../namespaces/Fr3nch13.md)
+* [\Fr3nch13](../namespaces/Fr3nch13.html.md)
 
 ---
 
 ### Reports
-* [Errors - 2](../reports/errors)
-* [Markers - 0](../reports/markers)
-* [Deprecated - 0](../reports/deprecated)
+* [Errors - 2](../reports/errors.md)
+* [Markers - 0](../reports/markers.md)
+* [Deprecated - 0](../reports/deprecated.md)
 
 ---
 

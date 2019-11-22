@@ -15,6 +15,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "php": "7.*",
         "cakephp/app": "3.*",
         "cakephp/cakephp": "3.*"
     },
@@ -22,7 +23,7 @@
         "cakephp/bake": "^1.1",
         "cakephp/cakephp-codesniffer": "3.*",
         "cakephp/debug_kit": "^3.15.0",
-        "fr3nch13/phpdoc-markdown": "1.*",
+        "fr3nch13/phpdoc-markdown": "<1.0.3",
         "mockery/mockery": "^1.2",
         "phpdocumentor/phpdocumentor": "dev-master",
         "phpunit/phpunit": "^5.7|^6.0",
@@ -43,8 +44,9 @@
     "scripts": {
         "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
         "pre-commit": [
-            "@check",
-            "@phpdoc"
+            "@cs-check",
+            "@phpdoc",
+            "@test"
         ],
         "check": [
             "@cs-check",
