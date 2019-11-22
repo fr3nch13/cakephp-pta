@@ -30,7 +30,7 @@ install:
 
 script:
     - composer dumpautoload
-    - composer check
+    - composer pre-commit
     - if [[ $COVERAGE = 1 ]]; then composer test-coverage; fi
     - if [[ $COVERAGE = 1 ]]; then composer test-clover; fi
 
