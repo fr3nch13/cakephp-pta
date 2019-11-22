@@ -22,7 +22,7 @@ jobs:
 
 install:
   - |
-    if [[ $COVERAGE !=1 ]]; then
+    if [[ $COVERAGE = 0 ]]; then
         # disable xdebug for performance reasons when code coverage is not needed
         phpenv config-rm xdebug.ini || echo "xdebug is not installed"
     fi
