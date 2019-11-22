@@ -10,6 +10,7 @@ php:
     - nightly
 
 env: COVERAGE=0
+env: COMPOSER_MEMORY_LIMIT=-1
 
 jobs:
     fast_finish: true
@@ -25,7 +26,7 @@ install:
         # disable xdebug for performance reasons when code coverage is not needed
         phpenv config-rm xdebug.ini || echo "xdebug is not installed"
     fi
-    - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer install --prefer-source
+    - composer install --prefer-source
 
 script:
     - composer dumpautoload
