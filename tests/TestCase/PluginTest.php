@@ -119,4 +119,17 @@ class PluginTest extends TestCase
 
         $this->assertEquals($url, '/pta');
     }
+
+    /**
+     * Test to make sure we're actually in the application's root.
+     *
+     * @return void
+     */
+    public function testGetcwd()
+    {
+        $dir = getcwd();
+        $thisDir = basename($dir);
+
+        $this->assertEquals($thisDir, 'cakephp-pta');
+    }
 }

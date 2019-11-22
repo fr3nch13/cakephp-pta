@@ -44,25 +44,55 @@ if (is_file('vendor/autoload.php')) {
 if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
-define('ROOT', dirname(__DIR__));
-define('APP_DIR', 'TestApp');
+if (!defined('ROOT')) {
+    define('ROOT', getcwd());
+}
+if (!defined('APP_DIR')) {
+    define('APP_DIR', 'TestApp');
+}
 
-define('TMP', sys_get_temp_dir() . DS);
-define('LOGS', TMP . 'logs' . DS);
-define('CACHE', TMP . 'cache' . DS);
-define('SESSIONS', TMP . 'sessions' . DS);
+if (!defined('TMP')) {
+    define('TMP', sys_get_temp_dir() . DS);
+}
+if (!defined('LOGS')) {
+    define('LOGS', TMP . 'logs' . DS);
+}
+if (!defined('CACHE')) {
+    define('CACHE', TMP . 'cache' . DS);
+}
+if (!defined('SESSIONS')) {
+    define('SESSIONS', TMP . 'sessions' . DS);
+}
 
-define('CAKE_CORE_INCLUDE_PATH', ROOT);
-define('CORE_PATH', CAKE_CORE_INCLUDE_PATH . DS);
-define('CAKE', CORE_PATH . 'src' . DS);
-define('CORE_TESTS', CORE_PATH . 'tests' . DS);
-define('CORE_TEST_CASES', CORE_TESTS . 'TestCase');
-define('TEST_APP', CORE_TESTS . 'test_app' . DS);
+if (!defined('CAKE_CORE_INCLUDE_PATH')) {
+    define('CAKE_CORE_INCLUDE_PATH', ROOT);
+}
+if (!defined('CORE_PATH')) {
+    define('CORE_PATH', CAKE_CORE_INCLUDE_PATH . DS);
+}
+if (!defined('CAKE')) {
+    define('CAKE', CORE_PATH . 'src' . DS);
+}
+if (!defined('CORE_TESTS')) {
+    define('CORE_TESTS', CORE_PATH . 'tests' . DS);
+}
+if (!defined('CORE_TEST_CASES')) {
+    define('CORE_TEST_CASES', CORE_TESTS . 'TestCase');
+}
+if (!defined('TEST_APP')) {
+    define('TEST_APP', CORE_TESTS . 'test_app' . DS);
+}
 
 // Point app constants to the test app.
-define('APP', TEST_APP . 'TestApp' . DS);
-define('WWW_ROOT', TEST_APP . 'webroot' . DS);
-define('CONFIG', TEST_APP . 'config' . DS);
+if (!defined('APP')) {
+    define('APP', TEST_APP . 'TestApp' . DS);
+}
+if (!defined('WWW_ROOT')) {
+    define('WWW_ROOT', TEST_APP . 'webroot' . DS);
+}
+if (!defined('CONFIG')) {
+    define('CONFIG', TEST_APP . 'config' . DS);
+}
 
 //@codingStandardsIgnoreStart
 @mkdir(LOGS);
