@@ -15,6 +15,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "php": "7.*",
         "cakephp/app": "3.*",
         "cakephp/cakephp": "3.*"
     },
