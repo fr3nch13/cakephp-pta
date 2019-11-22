@@ -79,6 +79,9 @@ class Plugin extends BasePlugin
     }
 
     /**
+     * Additional bootstrapping for cli invocations.
+     *
+     * @param \Cake\Core\PluginApplicationInterface $app The app object.
      * @return void
      */
     protected function bootstrapCli(PluginApplicationInterface $app)
