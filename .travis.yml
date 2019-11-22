@@ -23,11 +23,8 @@ jobs:
           env: COVERAGE=1
 
 install:
-  - |
-    if [[ $COVERAGE = 0 ]]; then
-        # disable xdebug for performance reasons when code coverage is not needed
-        phpenv config-rm xdebug.ini || echo "xdebug is not installed"
-    fi
+    # disable xdebug for performance reasons when code coverage is not needed
+    - if [[ $COVERAGE = 0 ]]; then phpenv config-rm xdebug.ini || echo "xdebug is not installed"; fi
     - composer install --prefer-source
 
 script:
