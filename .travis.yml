@@ -7,22 +7,28 @@ php:
     - 7.1
     - 7.2
     - 7.3
-    - 7.4snapshot
+    - nightly
 
 jobs:
     fast_finish: true
+    allow_failures:
+    - php: nightly
 
     include:
         - php: 7.2
           env: COVERAGE=1
 
-before_script:
-    - composer install --prefer-source
+install:
+  - |
+    if [[ $COVERAGE !=1 ]]; then
+        # disable xdebug for performance reasons when code coverage is not needed
+        phpenv config-rm xdebug.ini || echo "xdebug is not installed"
+    fi
+    - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer install --prefer-source
 
 script:
     - composer dumpautoload
-    - composer cs-check
-    - composer test
+    - composer check
     - if [[ $COVERAGE = 1 ]]; then composer test-coverage; fi
     - if [[ $COVERAGE = 1 ]]; then composer test-clover; fi
 
