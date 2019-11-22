@@ -10,8 +10,9 @@ php:
     - nightly
 
 env:
-    - COVERAGE=0
-    - COMPOSER_MEMORY_LIMIT=-1
+    global:
+        - COVERAGE=0
+        - COMPOSER_MEMORY_LIMIT=-1
 
 jobs:
     fast_finish: true
