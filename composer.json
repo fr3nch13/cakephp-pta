@@ -1,0 +1,69 @@
+{
+    "name": "fr3nch13/cakephp-pta",
+    "description": "A CakePHP Plugin to emulate a generic App when testing Plugins.",
+    "keywords": ["cakephp", "plugin", "app"],
+    "homepage": "https://github.com/fr3nch13/cakephp-pta",
+    "type": "cakephp-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brian French",
+            "email": "fr3nch13@gmail.com",
+            "homepage": "https://github.com/fr3nch13"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "cakephp/cakephp": "3.*"
+    },
+    "require-dev": {
+        "cakephp/app": "3.*",
+        "cakephp/bake": "^1.1",
+        "cakephp/cakephp-codesniffer": "3.*",
+        "cakephp/debug_kit": "^3.15.0",
+        "fr3nch13/phpdoc-markdown": "1.*",
+        "mockery/mockery": "^1.2",
+        "phpdocumentor/phpdocumentor": "dev-master",
+        "phpunit/phpunit": "^5.7|^6.0",
+        "psy/psysh": "@stable"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fr3nch13\\Pta\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Fr3nch13\\Pta\\": "tests/",
+            "Fr3nch13\\Pta\\Test\\Fixture\\": "tests/Fixture/",
+            "App\\": "vendor/cakephp/app/src/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "fix": [
+            "@cs-fix",
+            "@cs-check"
+        ],
+        "cs-check": "vendor/bin/phpcs --colors -p -s --extensions=ctp,php ./src ./tests",
+        "cs-fix": "vendor/bin/phpcbf --colors --extensions=ctp,php ./src ./tests",
+        "phpdoc": [
+            "export COMPOSER_PROCESS_TIMEOUT=9000",
+            "@phpdoc-run",
+            "@phpdoc-fix"
+        ],
+        "phpdoc-run": "vendor/bin/phpdoc --sourcecode -v",
+        "phpdoc-fix": "php vendor/fr3nch13/phpdoc-markdown/bin/fixHtmlToMd.php",
+        "test": "vendor/bin/phpunit --colors=always",
+        "test-coverage": "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage",
+        "test-clover": "vendor/bin/phpunit --coverage-clover=coverage.xml"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

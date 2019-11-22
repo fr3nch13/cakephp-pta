@@ -1,0 +1,37 @@
+language: php
+os: linux
+
+php:
+    - 5.6
+    - 7.0
+    - 7.1
+    - 7.2
+    - 7.3
+    - 7.4snapshot
+
+jobs:
+    fast_finish: true
+
+    include:
+        - php: 7.2
+          env: COVERAGE=1
+
+before_script:
+    - composer install --prefer-source
+
+script:
+    - composer dumpautoload
+    - composer cs-check
+    - composer test
+    - if [[ $COVERAGE = 1 ]]; then composer test-coverage; fi
+    - if [[ $COVERAGE = 1 ]]; then composer test-clover; fi
+
+after_success:
+    - if [[ $COVERAGE = 1 ]]; then bash <(curl -s https://codecov.io/bash); fi
+
+cache:
+    directories:
+        - $HOME/.composer/cache
+
+notifications:
+    email: false
