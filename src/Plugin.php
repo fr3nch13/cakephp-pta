@@ -22,7 +22,10 @@ use Cake\Routing\Route\DashedRoute;
 class Plugin extends BasePlugin
 {
     /**
-     * {@inheritDoc}
+     * Bootstraping for this specific plugin.
+     *
+     * @param \Cake\Core\PluginApplicationInterface $app The app object.
+     * @return void
      */
     public function bootstrap(PluginApplicationInterface $app)
     {
@@ -79,6 +82,9 @@ class Plugin extends BasePlugin
     }
 
     /**
+     * More bootstrapping if we're running on the command line.
+     *
+     * @param \Cake\Core\PluginApplicationInterface $app The app object.
      * @return void
      */
     protected function bootstrapCli(PluginApplicationInterface $app)
