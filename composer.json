@@ -45,8 +45,8 @@
         "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
         "pre-commit": [
             "@cs-check",
-            "@phpdoc",
-            "@test"
+            "@test",
+            "@phpdoc"
         ],
         "check": [
             "@cs-check",
