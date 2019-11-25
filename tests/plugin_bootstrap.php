@@ -102,7 +102,9 @@ if (!defined('CONFIG')) {
 @mkdir(CACHE . 'models');
 //@codingStandardsIgnoreEnd
 
-require_once CORE_PATH . 'config/bootstrap.php';
+if (file_exists(CORE_PATH . 'config/bootstrap.php')) {
+    require_once CORE_PATH . 'config/bootstrap.php';
+}
 
 date_default_timezone_set('UTC');
 mb_internal_encoding('UTF-8');
@@ -183,9 +185,3 @@ loadPHPUnitAliases();
 // does not allow the sessionid to be set after stdout
 // has been written to.
 session_id('cli');
-
-if (file_exists($root . '/config/bootstrap.php')) {
-    require $root . '/config/bootstrap.php';
-
-    return;
-}
