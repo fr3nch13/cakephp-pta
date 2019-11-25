@@ -17,15 +17,11 @@
     "require": {
         "php": "7.*",
         "cakephp/app": "3.*",
-        "cakephp/cakephp": "3.*"
-    },
-    "require-dev": {
-        "cakephp/bake": "^1.1",
+        "cakephp/cakephp": "3.*",
         "cakephp/cakephp-codesniffer": "3.*",
-        "cakephp/debug_kit": "^3.15.0",
-        "fr3nch13/phpdoc-markdown": "<1.0.3",
+        "cakephp/debug_kit": "3.*",
+        "fr3nch13/phpdoc-markdown": "^1.0.6",
         "mockery/mockery": "^1.2",
-        "phpdocumentor/phpdocumentor": "dev-master",
         "phpunit/phpunit": "^5.7|^6.0",
         "psy/psysh": "@stable"
     },
@@ -45,8 +41,8 @@
         "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
         "pre-commit": [
             "@cs-check",
-            "@phpdoc",
-            "@test"
+            "@test",
+            "@phpdoc"
         ],
         "check": [
             "@cs-check",
@@ -63,7 +59,7 @@
             "@phpdoc-run",
             "@phpdoc-fix"
         ],
-        "phpdoc-run": "vendor/bin/phpdoc --sourcecode -v",
+        "phpdoc-run": "vendor/bin/phpdoc",
         "phpdoc-fix": "php vendor/fr3nch13/phpdoc-markdown/bin/fixHtmlToMd.php",
         "test": "vendor/bin/phpunit --colors=always",
         "test-coverage": "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage",
