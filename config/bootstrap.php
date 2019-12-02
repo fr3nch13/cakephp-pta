@@ -1,9 +1,4 @@
 <?php
 /**
- * Here so cakephp's test/bootstrap.php can include it.
+ * Placed here to appease cakephp tests.
  */
-
-use Cake\Core\Configure;
-
-// used in tests.
-Configure::write('Pta.test', 'TEST');

@@ -7,11 +7,11 @@
 
 This CakePHP Plugin is used to emulate a generic App when testing your CakePHP Plugins.
 
-I was originally using the cakephp/app as that is the up to date skeleton app, but many of my plugins
-share many of the same things, and this plugin is meant to keep them dry.
+I am using the cakephp/app as that is the up-to-date skeleton app, and many of my plugins
+share many of the same things. This plugin is meant to keep them dry.
 
 As an example: the `test/bootstrap.php` file. When I need to change/add something to that, I have to do
-it in over 10 CakePHP plugins. It's easier to just put the common stuff in here, and include the `tests/plugin_bootstrap.php` from here. Similar to how baked plugins do with the core test/bootstrap.php.
+it in over 10 CakePHP plugins. It's easier to just put the common stuff in here, and include the `tests/plugin_bootstrap.php` from here. Similar to how baked plugins do with the core `test/bootstrap.php`.
 
 To use this plugin's bootstrap for other plugins, add the below lines to your `tests/bootstrap.php` near the top.
 

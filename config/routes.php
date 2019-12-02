@@ -1,6 +1,6 @@
 <?php
 /**
- * Pleased here to appease cakephp tests.
+ * Placed here to appease cakephp tests.
  */
 
 use Cake\Routing\RouteBuilder;
