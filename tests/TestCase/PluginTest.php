@@ -65,6 +65,7 @@ class PluginTest extends TestCase
     {
         $dir = getcwd();
         $thisDir = basename($dir);
+        pr($dir);
 
         $this->assertEquals($thisDir, 'cakephp-pta');
     }
