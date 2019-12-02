@@ -4,4 +4,3 @@
 !*.gitkeep
 docs/phpdoc-cache-*
 docs/**/*.php
-/coverage.xml
