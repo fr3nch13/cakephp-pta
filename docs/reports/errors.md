@@ -1,12 +1,7 @@
 # [CakePHP Jira Plugin API Documentation](../home.md)
 
 # Compilation Errors
-* 2 - Controller/AppController.php
-### 2 - Controller/AppController.php
-| Type | Line | Description |
-| ---- | ---- | ----------- |
-| error | 0 | No summary was found for this file |
-| error | 7 | No summary for class \Fr3nch13\Pta\Controller\AppController |
+**No errors have been found in this project.**
 
 ---
 
@@ -17,10 +12,10 @@
 ---
 
 ### Reports
-* [Errors - 2](../reports/errors.md)
+* [Errors - 0](../reports/errors.md)
 * [Markers - 0](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-25 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-12-02 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

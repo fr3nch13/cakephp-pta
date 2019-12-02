@@ -1,6 +1,6 @@
 /vendor
-/tmp/*/
+/tmp
+/logs
 !*.gitkeep
 docs/phpdoc-cache-*
 docs/**/*.php
-/coverage.xml

@@ -9,13 +9,13 @@ namespace Fr3nch13\Pta\Test\TestCase;
 use App\Application;
 use Cake\Console\CommandCollection;
 use Cake\Core\Configure;
+use Cake\Core\Plugin;
 use Cake\Http\MiddlewareQueue;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\RouteCollection;
 use Cake\Routing\Router;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
-use Fr3nch13\Jira\Plugin;
 
 /**
  * PluginTest class
@@ -34,12 +34,6 @@ class PluginTest extends TestCase
     public $App = null;
 
     /**
-     * The Plugin object to test.
-     * @var \Fr3nch13\Jira\Plugin|null
-     */
-    public $Plugin = null;
-
-    /**
      * setUp method
      *
      * @return void
@@ -48,10 +42,8 @@ class PluginTest extends TestCase
     {
         parent::setUp();
 
-        // this makes sure the configuration in Plugin::bootstrap() is ran.
-        $this->App = new Application(dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'config');
+        $this->App = new Application(CONFIG);
         $this->App->addPlugin('Fr3nch13/Pta');
-        $this->Plugin = new \Fr3nch13\Pta\Plugin();
     }
 
     /**
@@ -71,23 +63,11 @@ class PluginTest extends TestCase
      */
     public function testBootstrap()
     {
-        $this->Plugin->bootstrap($this->App);
+        $plugin = Plugin::getCollection()->get('Fr3nch13/Pta');
+        $plugin->bootstrap($this->App);
 
         // make sure it was able to read and store the config.
         $this->assertEquals(Configure::read('Pta.test'), 'TEST');
-    }
-
-    /**
-     * testConsole
-     *
-     * @return void
-     */
-    public function testConsole()
-    {
-        $commands = new CommandCollection();
-        $commands = $this->Plugin->console($commands);
-
-        $this->assertInstanceOf(CommandCollection::class, $commands);
     }
 
     /**
@@ -98,7 +78,8 @@ class PluginTest extends TestCase
     public function testMiddleware()
     {
         $middleware = new MiddlewareQueue();
-        $middleware = $this->Plugin->middleware($middleware);
+        $plugin = Plugin::getCollection()->get('Fr3nch13/Pta');
+        $middleware = $plugin->middleware($middleware);
 
         $this->assertInstanceOf(MiddlewareQueue::class, $middleware);
     }
@@ -113,23 +94,11 @@ class PluginTest extends TestCase
         Router::resetRoutes();
         $collection = new RouteCollection();
         $routeBuilder = new RouteBuilder($collection, '');
-        $this->Plugin->routes($routeBuilder);
+        $plugin = Plugin::getCollection()->get('Fr3nch13/Pta');
+        $plugin->routes($routeBuilder);
 
         $url = Router::url(['plugin' => 'Fr3nch13/Pta']);
 
         $this->assertEquals($url, '/pta');
-    }
-
-    /**
-     * Test to make sure we're actually in the application's root.
-     *
-     * @return void
-     */
-    public function testGetcwd()
-    {
-        $dir = getcwd();
-        $thisDir = basename($dir);
-
-        $this->assertEquals($thisDir, 'cakephp-pta');
     }
 }
