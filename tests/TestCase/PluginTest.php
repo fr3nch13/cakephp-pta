@@ -57,20 +57,6 @@ class PluginTest extends TestCase
     }
 
     /**
-     * Test to make sure we're actually in the plugin's root.
-     *
-     * @return void
-     */
-    public function testGetcwd()
-    {
-        $dir = getcwd();
-        $thisDir = basename($dir);
-        pr($dir);
-
-        $this->assertEquals($thisDir, 'cakephp-pta');
-    }
-
-    /**
      * testBootstrap
      *
      * @return void
