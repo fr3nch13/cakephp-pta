@@ -3,4 +3,4 @@
  * Include the plugin's bootstrap.
  */
 
-require __DIR__ . '/test_app/config/bootstrap.php';
+require $root . DS . 'tests' . DS . 'test_app' . DS . 'config' . DS . 'bootstrap.php';

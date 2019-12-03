@@ -6,16 +6,14 @@
 
 namespace Fr3nch13\Pta\Test\TestCase;
 
-use App\Application;
-use Cake\Console\CommandCollection;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
-use Cake\Http\MiddlewareQueue;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\RouteCollection;
 use Cake\Routing\Router;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use PtaApp\Application;
 
 /**
  * PluginTest class
@@ -28,12 +26,6 @@ class PluginTest extends TestCase
     use IntegrationTestTrait;
 
     /**
-     * The Application object.
-     * @var \App\Application|null
-     */
-    public $App = null;
-
-    /**
      * setUp method
      *
      * @return void
@@ -41,9 +33,6 @@ class PluginTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-
-        $this->App = new Application(CONFIG);
-        $this->App->addPlugin('Fr3nch13/Pta');
     }
 
     /**
@@ -63,25 +52,13 @@ class PluginTest extends TestCase
      */
     public function testBootstrap()
     {
-        $plugin = Plugin::getCollection()->get('Fr3nch13/Pta');
-        $plugin->bootstrap($this->App);
+        $app = new Application(CONFIG);
+        $app->bootstrap();
+        $app->pluginBootstrap();
+        $plugins = $app->getPlugins();
 
-        // make sure it was able to read and store the config.
+        $this->assertSame('Fr3nch13/Pta', $plugins->get('Fr3nch13/Pta')->getName());
         $this->assertEquals(Configure::read('Pta.test'), 'TEST');
-    }
-
-    /**
-     * testMiddleware
-     *
-     * @return void
-     */
-    public function testMiddleware()
-    {
-        $middleware = new MiddlewareQueue();
-        $plugin = Plugin::getCollection()->get('Fr3nch13/Pta');
-        $middleware = $plugin->middleware($middleware);
-
-        $this->assertInstanceOf(MiddlewareQueue::class, $middleware);
     }
 
     /**
@@ -91,11 +68,13 @@ class PluginTest extends TestCase
      */
     public function testRoutes()
     {
-        Router::resetRoutes();
+        $app = new Application(CONFIG);
+        $app->bootstrap();
+        $app->pluginBootstrap();
         $collection = new RouteCollection();
         $routeBuilder = new RouteBuilder($collection, '');
-        $plugin = Plugin::getCollection()->get('Fr3nch13/Pta');
-        $plugin->routes($routeBuilder);
+        $app->pluginRoutes($routeBuilder);
+        $plugins = $app->getPlugins();
 
         $url = Router::url(['plugin' => 'Fr3nch13/Pta']);
 

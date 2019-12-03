@@ -43,21 +43,6 @@ class Plugin extends BasePlugin
         if (Configure::read('debug')) {
             $app->addPlugin(\DebugKit\Plugin::class);
         }
-
-        // Load more plugins here
-    }
-
-    /**
-     * Load needed Middleware
-     *
-     * @param object $middleware The passed middleware object.
-     * @return object The modified middleware object.
-     */
-    public function middleware($middleware)
-    {
-        // Add middleware here.
-
-        return parent::middleware($middleware);
     }
 
     /**
