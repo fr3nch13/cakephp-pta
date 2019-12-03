@@ -15,7 +15,6 @@
 namespace App\Controller;
 
 use PtaApp\Controller\AppController as BaseController;
-use Cake\Event\Event;
 
 /**
  * Application Controller
