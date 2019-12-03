@@ -46,19 +46,6 @@ class Plugin extends BasePlugin
     }
 
     /**
-     * Load needed Middleware
-     *
-     * @param object $middleware The passed middleware object.
-     * @return object The modified middleware object.
-     */
-    public function middleware($middleware)
-    {
-        // Add middleware here.
-
-        return parent::middleware($middleware);
-    }
-
-    /**
      * Add plugin specific routes here.
      *
      * @param object $routes The passed routes object.
