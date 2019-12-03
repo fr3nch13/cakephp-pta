@@ -17,7 +17,7 @@
     "require": {
         "php": "^7.2",
         "cakephp/bake": "^1.9.0",
-        "cakephp/cakephp": "^3.8",
+        "cakephp/cakephp": "^3.8.6",
         "cakephp/cakephp-codesniffer": "3.*",
         "cakephp/migrations": "^2.0.0",
         "cakephp/plugin-installer": "^1.0",
