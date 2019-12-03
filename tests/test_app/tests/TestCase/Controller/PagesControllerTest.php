@@ -12,9 +12,9 @@
  * @since         1.2.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace App\Test\TestCase\Controller;
+namespace PtaApp\Test\TestCase\Controller;
 
-use App\Controller\PagesController;
+use PtaApp\Controller\PagesController;
 use Cake\Core\App;
 use Cake\Core\Configure;
 use Cake\Http\Response;
@@ -90,6 +90,7 @@ class PagesControllerTest extends IntegrationTestCase
      */
     public function testDirectoryTraversalProtection()
     {
+        Configure::write('debug', false);
         $this->get('/pages/../Layout/ajax');
         $this->assertResponseCode(403);
         $this->assertResponseContains('Forbidden');
