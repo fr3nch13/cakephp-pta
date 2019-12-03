@@ -13,9 +13,14 @@
 
     <!-- Add any additional test suites you want to run here -->
     <testsuites>
-        <testsuite name="App">
+        <testsuite name="Pta Plugin">
             <directory>./tests/TestCase/</directory>
         </testsuite>
+        <!--
+        <testsuite name="Skeleton App">
+            <directory>./tests/test_app/tests/TestCase/</directory>
+        </testsuite>
+        -->
     </testsuites>
 
     <!-- Setup a listener for fixtures -->

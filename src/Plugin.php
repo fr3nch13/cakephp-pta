@@ -43,8 +43,6 @@ class Plugin extends BasePlugin
         if (Configure::read('debug')) {
             $app->addPlugin(\DebugKit\Plugin::class);
         }
-
-        // Load more plugins here
     }
 
     /**

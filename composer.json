@@ -15,12 +15,15 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "7.*",
-        "cakephp/app": "3.*",
-        "cakephp/cakephp": "3.*",
+        "php": "^7.2",
+        "cakephp/bake": "^1.9.0",
+        "cakephp/cakephp": "^3.8",
         "cakephp/cakephp-codesniffer": "3.*",
+        "cakephp/migrations": "^2.0.0",
+        "cakephp/plugin-installer": "^1.0",
         "cakephp/debug_kit": "3.*",
         "fr3nch13/phpdoc-markdown": "^1.0.6",
+        "mobiledetect/mobiledetectlib": "2.*",
         "mockery/mockery": "^1.2",
         "phpunit/phpunit": "^5.7|^6.0",
         "psy/psysh": "@stable"
@@ -32,9 +35,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Fr3nch13\\Pta\\": "tests/",
-            "Fr3nch13\\Pta\\Test\\Fixture\\": "tests/Fixture/",
-            "App\\": "vendor/cakephp/app/src/"
+            "PtaApp\\": "tests/test_app/src",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests",
+            "Fr3nch13\\Pta\\Test\\": "tests/",
+            "Fr3nch13\\Pta\\Test\\Fixture\\": "tests/Fixture/"
         }
     },
     "scripts": {

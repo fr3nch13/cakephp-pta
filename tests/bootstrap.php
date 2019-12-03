@@ -7,4 +7,7 @@
  * installed as a dependency of an application.
  */
 
-require_once __DIR__ . DS . '/plugin_bootstrap.php';
+//
+$root = dirname(__DIR__);
+chdir($root);
+require_once $root . DS . 'tests' . DS . 'plugin_bootstrap.php';
