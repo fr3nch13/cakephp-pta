@@ -1,6 +1,8 @@
 /vendor
 /tmp
 /logs
+composer.lock
+*default.lock
 !*.gitkeep
 docs/phpdoc-cache-*
 docs/**/*.php
