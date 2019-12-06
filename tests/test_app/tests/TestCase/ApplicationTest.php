@@ -12,15 +12,15 @@
  * @since         3.3.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace App\Test\TestCase;
+namespace PtaApp\Test\TestCase;
 
-use App\Application;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 use Cake\TestSuite\IntegrationTestCase;
 use InvalidArgumentException;
+use PtaApp\Application;
 
 /**
  * ApplicationTest class
@@ -39,10 +39,11 @@ class ApplicationTest extends IntegrationTestCase
         $app->bootstrap();
         $plugins = $app->getPlugins();
 
-        $this->assertCount(4, $plugins);
+        $this->assertCount(5, $plugins);
         $this->assertSame('Bake', $plugins->get('Bake')->getName());
         $this->assertSame('Migrations', $plugins->get('Migrations')->getName());
         $this->assertSame('DebugKit', $plugins->get('DebugKit')->getName());
+        $this->assertSame('WyriHaximus/TwigView', $plugins->get('WyriHaximus/TwigView')->getName());
         $this->assertSame('Fr3nch13/Pta', $plugins->get('Fr3nch13/Pta')->getName());
     }
 

@@ -15,7 +15,6 @@ CakePHP PTA Plugin
 ---
 ### Methods
 * [public bootstrap()](../classes/Fr3nch13.Pta.Plugin.md#method_bootstrap)
-* [public middleware()](../classes/Fr3nch13.Pta.Plugin.md#method_middleware)
 * [public routes()](../classes/Fr3nch13.Pta.Plugin.md#method_routes)
 * [protected bootstrapCli()](../classes/Fr3nch13.Pta.Plugin.md#method_bootstrapCli)
 ---
@@ -47,27 +46,6 @@ Bootstraping for this specific plugin.
 | <code>\Cake\Core\PluginApplicationInterface</code> | $app  | The app object. |
 
 **Returns:** void
-
-
-<a name="method_middleware" class="anchor"></a>
-#### public middleware() : object
-
-```
-public middleware(object  $middleware) : object
-```
-
-**Summary**
-
-Load needed Middleware
-
-**Details:**
-* Inherited From: [\Fr3nch13\Pta\Plugin](../classes/Fr3nch13.Pta.Plugin.md)
-##### Parameters:
-| Type | Name | Description |
-| ---- | ---- | ----------- |
-| <code>object</code> | $middleware  | The passed middleware object. |
-
-**Returns:** object - The modified middleware object.
 
 
 <a name="method_routes" class="anchor"></a>
