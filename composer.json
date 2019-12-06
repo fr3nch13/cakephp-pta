@@ -48,6 +48,9 @@
             "@test",
             "@phpdoc"
         ],
+        "ci": [
+            "@check"
+        ],
         "check": [
             "@cs-check",
             "@test"
@@ -66,8 +69,9 @@
         "phpdoc-run": "vendor/bin/phpdoc",
         "phpdoc-fix": "php vendor/fr3nch13/phpdoc-markdown/bin/fixHtmlToMd.php",
         "test": "vendor/bin/phpunit --colors=always",
-        "test-coverage": "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage",
-        "test-clover": "vendor/bin/phpunit --coverage-clover=tmp/coverage.xml"
+        "coverage": "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage",
+        "coverage-clover": "vendor/bin/phpunit --coverage-clover=tmp/coverage.xml",
+        "coverage-text": "vendor/bin/phpunit --coverage-text --colors=never"
     },
     "config": {
         "sort-packages": true
