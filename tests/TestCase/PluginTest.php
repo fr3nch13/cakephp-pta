@@ -76,8 +76,8 @@ class PluginTest extends TestCase
         $app->pluginRoutes($routeBuilder);
         $plugins = $app->getPlugins();
 
-        $url = Router::url(['plugin' => 'Fr3nch13/Pta']);
+        $url = Router::url(['plugin' => 'Fr3nch13/Pta', 'controller' => 'App']);
 
-        $this->assertEquals($url, '/pta');
+        $this->assertEquals($url, '/pta/app');
     }
 }
