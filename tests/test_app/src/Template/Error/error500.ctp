@@ -1,6 +1,5 @@
 <?php
-use Cake\Core\Configure;
-use Cake\Error\Debugger;
+declare(strict_types=1);
 
 $this->layout = 'error';
 

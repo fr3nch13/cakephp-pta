@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Test suite bootstrap for ContactManager.
  *
@@ -7,7 +9,6 @@
  * installed as a dependency of an application.
  */
 
-//
 $root = dirname(__DIR__);
 chdir($root);
 require_once $root . DS . 'tests' . DS . 'plugin_bootstrap.php';

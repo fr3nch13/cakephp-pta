@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 if (!$this->fetch('page-title')) {
     $this->assign('page-title', __('Base'));
