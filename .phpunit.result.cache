@@ -1,1 +1,0 @@
-C:37:"PHPUnit\Runner\DefaultTestResultCache":301:{a:2:{s:7:"defects";a:2:{s:52:"Fr3nch13\Pta\Test\TestCase\PluginTest::testBootstrap";i:4;s:49:"Fr3nch13\Pta\Test\TestCase\PluginTest::testRoutes";i:4;}s:5:"times";a:2:{s:52:"Fr3nch13\Pta\Test\TestCase\PluginTest::testBootstrap";d:0.35;s:49:"Fr3nch13\Pta\Test\TestCase\PluginTest::testRoutes";d:0.452;}}}
