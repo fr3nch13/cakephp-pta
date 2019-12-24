@@ -9,4 +9,4 @@ docs/**/*.php
 !/tests/test_app/logs/*.gitkeep
 /tests/test_app/tmp/*
 !/tests/test_app/tmp/*.gitkeep
-*.phpunit*
+.phpunit.result.cache
