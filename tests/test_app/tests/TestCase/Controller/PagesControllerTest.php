@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -14,13 +16,8 @@
  */
 namespace PtaApp\Test\TestCase\Controller;
 
-use Cake\Core\App;
 use Cake\Core\Configure;
-use Cake\Http\Response;
-use Cake\Http\ServerRequest;
 use Cake\TestSuite\IntegrationTestCase;
-use Cake\View\Exception\MissingTemplateException;
-use PtaApp\Controller\PagesController;
 
 /**
  * PagesControllerTest class

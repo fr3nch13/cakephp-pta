@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * PluginTest
@@ -7,7 +8,6 @@
 namespace Fr3nch13\Pta\Test\TestCase;
 
 use Cake\Core\Configure;
-use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\RouteCollection;
 use Cake\Routing\Router;
@@ -30,7 +30,7 @@ class PluginTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
@@ -40,7 +40,7 @@ class PluginTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
     }

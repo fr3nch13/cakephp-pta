@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * CakePHP PTA Plugin
  */
@@ -9,12 +11,9 @@ use Cake\Core\BasePlugin;
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
 use Cake\Core\PluginApplicationInterface;
-use Cake\Error\Middleware\ErrorHandlerMiddleware;
-use Cake\Routing\Middleware\AssetMiddleware;
-use Cake\Routing\Middleware\RoutingMiddleware;
+use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
-use Cake\Routing\Route\DashedRoute;
 
 /**
  * CakePHP PTA Plugin
@@ -27,7 +26,7 @@ class Plugin extends BasePlugin
      * @param \Cake\Core\PluginApplicationInterface $app The app object.
      * @return void
      */
-    public function bootstrap(PluginApplicationInterface $app)
+    public function bootstrap(PluginApplicationInterface $app): void
     {
         // Call parent to load bootstrap from files.
         parent::bootstrap($app);
@@ -48,10 +47,10 @@ class Plugin extends BasePlugin
     /**
      * Add plugin specific routes here.
      *
-     * @param object $routes The passed routes object.
+     * @param \Cake\Routing\RouteBuilder $routes The passed routes object.
      * @return void
      */
-    public function routes($routes)
+    public function routes(RouteBuilder $routes): void
     {
         // Add routes.
         Router::plugin(
@@ -72,7 +71,7 @@ class Plugin extends BasePlugin
      * @param \Cake\Core\PluginApplicationInterface $app The app object.
      * @return void
      */
-    protected function bootstrapCli(PluginApplicationInterface $app)
+    protected function bootstrapCli(PluginApplicationInterface $app): void
     {
         try {
             $app->addPlugin('Bake');
