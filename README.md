@@ -27,3 +27,9 @@ require_once $root . '/vendor/fr3nch13/cakephp-pta/tests/plugin_bootstrap.php';
 Then copy the folder from here: `tests/test_app_example` to your plugin's `tests` folder as `test_app`.
 
 Once you've copied over that folder, edit your `test/test_app/src/Application.php`'s `bootstrap()` method to include your plugin. There is an example in that file.
+
+### Version compatibility
+
+The major versions are locked to the major versions of CakePHP.
+- PTA 1.x is locked to CakePHP ^3.8
+- PTA 2.x is locked to CakePHP ^4.0
