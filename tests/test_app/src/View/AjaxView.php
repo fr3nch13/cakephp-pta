@@ -12,7 +12,7 @@
  * @since         3.0.4
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\View;
+namespace App\View;
 
 use Cake\Event\EventManager;
 use Cake\Http\Response;
@@ -40,7 +40,7 @@ class AjaxView extends AppView
      *
      * @return void
      */
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
 

@@ -12,7 +12,7 @@
  * @since     3.0.0
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Shell;
+namespace App\Shell;
 
 use Cake\Console\ConsoleOptionParser;
 use Cake\Console\Shell;
@@ -24,13 +24,12 @@ use Psy\Shell as PsyShell;
  */
 class ConsoleShell extends Shell
 {
-
     /**
      * Start the shell and interactive console.
      *
      * @return int|null
      */
-    public function main()
+    public function main(): ?int
     {
         if (!class_exists('Psy\Shell')) {
             $this->err('<error>Unable to load Psy\Shell.</error>');
@@ -57,6 +56,8 @@ class ConsoleShell extends Shell
 
         $psy = new PsyShell();
         $psy->run();
+
+        return null;
     }
 
     /**
@@ -64,7 +65,7 @@ class ConsoleShell extends Shell
      *
      * @return \Cake\Console\ConsoleOptionParser
      */
-    public function getOptionParser()
+    public function getOptionParser(): ConsoleOptionParser
     {
         $parser = new ConsoleOptionParser('console');
         $parser->setDescription(

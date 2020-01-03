@@ -12,7 +12,7 @@
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Controller;
+namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
@@ -37,7 +37,7 @@ class AppController extends Controller
      *
      * @return void
      */
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
 

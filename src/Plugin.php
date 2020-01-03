@@ -18,6 +18,7 @@ use Cake\Routing\Route\DashedRoute;
 
 /**
  * CakePHP PTA Plugin
+ * @TODO Install https://github.com/dereuromark/cakephp-ide-helper So dependant projects can make use of this.
  */
 class Plugin extends BasePlugin
 {
@@ -27,7 +28,7 @@ class Plugin extends BasePlugin
      * @param \Cake\Core\PluginApplicationInterface $app The app object.
      * @return void
      */
-    public function bootstrap(PluginApplicationInterface $app)
+    public function bootstrap(PluginApplicationInterface $app): void
     {
         // Call parent to load bootstrap from files.
         parent::bootstrap($app);
@@ -51,7 +52,7 @@ class Plugin extends BasePlugin
      * @param object $routes The passed routes object.
      * @return void
      */
-    public function routes($routes)
+    public function routes($routes): void
     {
         // Add routes.
         Router::plugin(
@@ -76,6 +77,9 @@ class Plugin extends BasePlugin
     {
         try {
             $app->addPlugin('Bake');
+            if (Configure::read('debug')) {
+                $app->addPlugin('IdeHelper');
+            }
         } catch (MissingPluginException $e) {
             // Do not halt if the plugin is missing
         }

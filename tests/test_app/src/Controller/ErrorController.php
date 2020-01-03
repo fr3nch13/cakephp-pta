@@ -12,7 +12,7 @@
  * @since         3.3.4
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Controller;
+namespace App\Controller;
 
 use Cake\Event\Event;
 
@@ -28,7 +28,7 @@ class ErrorController extends AppController
      *
      * @return void
      */
-    public function initialize()
+    public function initialize(): void
     {
         $this->loadComponent('RequestHandler', [
             'enableBeforeRedirect' => false,
@@ -39,32 +39,34 @@ class ErrorController extends AppController
      * beforeFilter callback.
      *
      * @param \Cake\Event\Event $event Event.
-     * @return \Cake\Http\Response|null|void
+     * @return \Cake\Http\Response|null
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\Event $event): ?\Cake\Http\Response
     {
+        return null;
     }
 
     /**
      * beforeRender callback.
      *
      * @param \Cake\Event\Event $event Event.
-     * @return \Cake\Http\Response|null|void
+     * @return \Cake\Http\Response|null
      */
-    public function beforeRender(Event $event)
+    public function beforeRender(\Cake\Event\Event $event): ?\Cake\Http\Response
     {
-        parent::beforeRender($event);
-
         $this->viewBuilder()->setTemplatePath('Error');
+
+        return parent::beforeRender($event);
     }
 
     /**
      * afterFilter callback.
      *
      * @param \Cake\Event\Event $event Event.
-     * @return \Cake\Http\Response|null|void
+     * @return \Cake\Http\Response|null
      */
-    public function afterFilter(Event $event)
+    public function afterFilter(\Cake\Event\Event $event)
     {
+        return null;
     }
 }

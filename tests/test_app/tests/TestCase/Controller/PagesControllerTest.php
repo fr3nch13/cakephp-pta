@@ -12,7 +12,7 @@
  * @since         1.2.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Test\TestCase\Controller;
+namespace App\Test\TestCase\Controller;
 
 use Cake\Core\App;
 use Cake\Core\Configure;

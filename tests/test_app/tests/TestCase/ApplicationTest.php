@@ -12,15 +12,15 @@
  * @since         3.3.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Test\TestCase;
+namespace App\Test\TestCase;
 
+use App\Application;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 use Cake\TestSuite\IntegrationTestCase;
 use InvalidArgumentException;
-use PtaApp\Application;
 
 /**
  * ApplicationTest class
@@ -45,26 +45,6 @@ class ApplicationTest extends IntegrationTestCase
         $this->assertSame('DebugKit', $plugins->get('DebugKit')->getName());
         $this->assertSame('WyriHaximus/TwigView', $plugins->get('WyriHaximus/TwigView')->getName());
         $this->assertSame('Fr3nch13/Pta', $plugins->get('Fr3nch13/Pta')->getName());
-    }
-
-    /**
-     * testBootstrapPluginWitoutHalt
-     *
-     * @return void
-     */
-    public function testBootstrapPluginWithoutHalt()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        $app = $this->getMockBuilder(Application::class)
-            ->setConstructorArgs([dirname(dirname(__DIR__)) . '/config'])
-            ->setMethods(['addPlugin'])
-            ->getMock();
-
-        $app->method('addPlugin')
-            ->will($this->throwException(new InvalidArgumentException('test exception.')));
-
-        $app->bootstrap();
     }
 
     /**

@@ -12,7 +12,7 @@
  * @since     3.0.0
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Console;
+namespace App\Console;
 
 if (!defined('STDIN')) {
     define('STDIN', fopen('php://stdin', 'r'));
@@ -28,7 +28,6 @@ use Exception;
  */
 class Installer
 {
-
     /**
      * An array of directories to be made writable
      */
@@ -50,7 +49,7 @@ class Installer
      * @throws \Exception Exception raised by validator.
      * @return void
      */
-    public static function postInstall(Event $event)
+    public static function postInstall(Event $event): void
     {
         $io = $event->getIO();
 
