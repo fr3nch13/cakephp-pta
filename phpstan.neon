@@ -1,2 +1,3 @@
 parameters:
     ignoreErrors:
+    - '#^Constant (CONFIG|APP|TMP|ROOT|CORE_PATH|WWW_ROOT|CACHE|LOGS|PLUGIN_ROOT) not found\.$#'

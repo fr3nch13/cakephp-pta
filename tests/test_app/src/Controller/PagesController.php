@@ -12,7 +12,7 @@
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Controller;
+namespace App\Controller;
 
 use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
@@ -38,7 +38,7 @@ class PagesController extends AppController
      * @throws \Cake\Http\Exception\NotFoundException When the view file could not
      *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
      */
-    public function display(...$path)
+    public function display(...$path): ?\Cake\Http\Response
     {
         $count = count($path);
         if (!$count) {
@@ -65,5 +65,7 @@ class PagesController extends AppController
             }
             throw new NotFoundException();
         }
+
+        return null;
     }
 }

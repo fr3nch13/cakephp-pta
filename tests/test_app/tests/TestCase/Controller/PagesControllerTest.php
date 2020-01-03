@@ -12,15 +12,15 @@
  * @since         1.2.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Test\TestCase\Controller;
+namespace App\Test\TestCase\Controller;
 
+use App\Controller\PagesController;
 use Cake\Core\App;
 use Cake\Core\Configure;
 use Cake\Http\Response;
 use Cake\Http\ServerRequest;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\View\Exception\MissingTemplateException;
-use PtaApp\Controller\PagesController;
 
 /**
  * PagesControllerTest class
