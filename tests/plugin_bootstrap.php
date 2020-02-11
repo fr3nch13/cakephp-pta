@@ -5,8 +5,10 @@ use Cake\Cache\Cache;
 use Cake\Console\ConsoleErrorHandler;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
+use Cake\Database\Type;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorHandler;
+use Cake\Http\ServerRequest;
 use Cake\Log\Log;
 use Cake\Mailer\Email;
 use Cake\Mailer\TransportFactory;
@@ -127,6 +129,41 @@ TransportFactory::setConfig(Configure::consume('EmailTransport'));
 Email::setConfig(Configure::consume('Email'));
 Log::setConfig(Configure::consume('Log'));
 Security::setSalt(Configure::consume('Security.salt'));
+
+/*
+ * Setup detectors for mobile and tablet.
+ */
+ServerRequest::addDetector('mobile', function ($request) {
+    $detector = new \Detection\MobileDetect();
+
+    return $detector->isMobile();
+});
+ServerRequest::addDetector('tablet', function ($request) {
+    $detector = new \Detection\MobileDetect();
+
+    return $detector->isTablet();
+});
+
+/*
+ * Enable immutable time objects in the ORM.
+ *
+ * You can enable default locale format parsing by adding calls
+ * to `useLocaleParser()`. This enables the automatic conversion of
+ * locale specific date formats. For details see
+ * @link https://book.cakephp.org/3.0/en/core-libraries/internationalization-and-localization.html#parsing-localized-datetime-data
+ */
+/** @var \Cake\Database\Type\TimeType $timeType */
+$timeType = Type::build('time');
+$timeType->useImmutable();
+/** @var \Cake\Database\Type\DateType $timeType */
+$timeType = Type::build('date');
+$timeType->useImmutable();
+/** @var \Cake\Database\Type\DateTimeType $timeType */
+$timeType = Type::build('datetime');
+$timeType->useImmutable();
+/** @var \Cake\Database\Type\DateTimeType $timeType */
+$timeType = Type::build('timestamp');
+$timeType->useImmutable();
 
 // Ensure default test connection is defined
 if (!getenv('db_class')) {
