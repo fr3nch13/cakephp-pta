@@ -17,6 +17,7 @@ use Cake\Routing\Router;
 
 /**
  * CakePHP PTA Plugin
+ *
  * @TODO Install https://github.com/dereuromark/cakephp-ide-helper So dependant projects can make use of this.
  */
 class Plugin extends BasePlugin
@@ -77,8 +78,8 @@ class Plugin extends BasePlugin
         try {
             $app->addPlugin('Bake');
             if (Configure::read('debug')) {
-                 $app->addPlugin('IdeHelper');
-             }
+                $app->addPlugin('IdeHelper');
+            }
         } catch (MissingPluginException $e) {
             // Do not halt if the plugin is missing
         }

@@ -4,6 +4,7 @@
 [![Coverage](https://codecov.io/gh/fr3nch13/cakephp-pta/branch/master/graph/badge.svg)](https://codecov.io/gh/fr3nch13/cakephp-pta)
 [![Total Downloads](https://img.shields.io/packagist/dt/fr3nch13/cakephp-pta.svg?style=flat-square)](https://packagist.org/packages/fr3nch13/cakephp-pta)
 [![Latest Stable Version](https://img.shields.io/packagist/v/fr3nch13/cakephp-pta.svg?style=flat-square)](https://packagist.org/packages/fr3nch13/cakephp-pta)
+[![GitHub release](https://img.shields.io/github/release/fr3nch13/cakephp-pta.svg)](https://GitHub.com/fr3nch13/cakephp-pta/releases/)
 
 This CakePHP Plugin is used to emulate a generic App when testing your CakePHP Plugins.
 

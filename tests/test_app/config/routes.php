@@ -44,7 +44,6 @@ use Cake\Routing\Router;
  *
  * Cache: Routes are cached to improve performance, check the RoutingMiddleware
  * constructor in your `src/Application.php` file to change this behavior.
- *
  */
 Router::defaultRouteClass(DashedRoute::class);
 
