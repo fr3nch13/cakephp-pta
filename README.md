@@ -33,4 +33,4 @@ Once you've copied over that folder, edit your `test/test_app/src/Application.ph
 
 The major versions are locked to the major versions of CakePHP.
 - PTA 1.x is locked to CakePHP ^3.8
-- PTA 2.x is locked to CakePHP ^4.0
+- PTA 2.x is locked to CakePHP ^4.0 and requires php 7.3 or higher.

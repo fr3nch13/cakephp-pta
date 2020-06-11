@@ -2,12 +2,8 @@ language: php
 os: linux
 
 php:
-    #- 7.0
-    #- 7.1
-    - 7.2
     - 7.3
     - 7.4
-    #- nightly
 
 env:
     global:
@@ -18,7 +14,7 @@ jobs:
     fast_finish: true
     #allow_failures:
     include:
-        - php: 7.2
+        - php: 7.3
           env: COVERAGE=1
 
 install:
