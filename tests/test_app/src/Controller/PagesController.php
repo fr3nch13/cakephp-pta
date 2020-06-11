@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -14,7 +12,7 @@ declare(strict_types=1);
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Controller;
+namespace App\Controller;
 
 use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
@@ -30,16 +28,17 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class PagesController extends AppController
 {
+
     /**
      * Displays a view
      *
      * @param array ...$path Path segments.
-     * @return void
+     * @return \Cake\Http\Response|null
      * @throws \Cake\Http\Exception\ForbiddenException When a directory traversal attempt.
      * @throws \Cake\Http\Exception\NotFoundException When the view file could not
      *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
      */
-    public function display(...$path): void
+    public function display(...$path): ?\Cake\Http\Response
     {
         $count = count($path);
         if (!$count) {
@@ -66,5 +65,7 @@ class PagesController extends AppController
             }
             throw new NotFoundException();
         }
+
+        return null;
     }
 }

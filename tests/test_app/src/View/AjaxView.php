@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -14,7 +12,11 @@ declare(strict_types=1);
  * @since         3.0.4
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\View;
+namespace App\View;
+
+use Cake\Event\EventManager;
+use Cake\Http\Response;
+use Cake\Http\ServerRequest;
 
 /**
  * A view class that is used for AJAX responses.
@@ -23,6 +25,7 @@ namespace PtaApp\View;
  */
 class AjaxView extends AppView
 {
+
     /**
      * The name of the layout file to render the view inside of. The name
      * specified is the filename of the layout in /src/Template/Layout without

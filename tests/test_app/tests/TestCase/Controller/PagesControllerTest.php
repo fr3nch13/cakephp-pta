@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -14,10 +12,15 @@ declare(strict_types=1);
  * @since         1.2.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Test\TestCase\Controller;
+namespace App\Test\TestCase\Controller;
 
+use App\Controller\PagesController;
+use Cake\Core\App;
 use Cake\Core\Configure;
+use Cake\Http\Response;
+use Cake\Http\ServerRequest;
 use Cake\TestSuite\IntegrationTestCase;
+use Cake\View\Exception\MissingTemplateException;
 
 /**
  * PagesControllerTest class
@@ -69,7 +72,7 @@ class PagesControllerTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testMissingTemplateInDebug()
+    public function testMissingTemplateInDebug(): void
     {
         Configure::write('debug', true);
         $this->get('/pages/not_existing');
@@ -85,7 +88,7 @@ class PagesControllerTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testDirectoryTraversalProtection()
+    public function testDirectoryTraversalProtection(): void
     {
         Configure::write('debug', false);
         $this->get('/pages/../Layout/ajax');

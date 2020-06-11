@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -14,7 +12,7 @@ declare(strict_types=1);
  * @since         3.3.4
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Controller;
+namespace App\Controller;
 
 use Cake\Event\Event;
 
@@ -41,32 +39,34 @@ class ErrorController extends AppController
      * beforeFilter callback.
      *
      * @param \Cake\Event\Event $event Event.
-     * @return void
+     * @return \Cake\Http\Response|null
      */
-    public function beforeFilter(Event $event): void
+    public function beforeFilter(\Cake\Event\Event $event): ?\Cake\Http\Response
     {
+        return null;
     }
 
     /**
      * beforeRender callback.
      *
      * @param \Cake\Event\Event $event Event.
-     * @return void
+     * @return \Cake\Http\Response|null
      */
-    public function beforeRender(Event $event): void
+    public function beforeRender(\Cake\Event\Event $event): ?\Cake\Http\Response
     {
-        parent::beforeRender($event);
-
         $this->viewBuilder()->setTemplatePath('Error');
+
+        return parent::beforeRender($event);
     }
 
     /**
      * afterFilter callback.
      *
      * @param \Cake\Event\Event $event Event.
-     * @return void
+     * @return \Cake\Http\Response|null
      */
-    public function afterFilter(Event $event): void
+    public function afterFilter(\Cake\Event\Event $event)
     {
+        return null;
     }
 }

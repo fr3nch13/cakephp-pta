@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -14,7 +12,7 @@ declare(strict_types=1);
  * @since     3.0.0
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Console;
+namespace App\Console;
 
 if (!defined('STDIN')) {
     define('STDIN', fopen('php://stdin', 'r'));
@@ -33,7 +31,7 @@ class Installer
     /**
      * An array of directories to be made writable
      */
-    public const WRITABLE_DIRS = [
+    const WRITABLE_DIRS = [
         'logs',
         'tmp',
         'tmp/cache',
@@ -97,7 +95,7 @@ class Installer
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function createAppConfig($dir, $io): void
+    public static function createAppConfig($dir, $io)
     {
         $appConfig = $dir . '/config/app.php';
         $defaultConfig = $dir . '/config/app.default.php';
@@ -114,7 +112,7 @@ class Installer
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function createWritableDirectories($dir, $io): void
+    public static function createWritableDirectories($dir, $io)
     {
         foreach (static::WRITABLE_DIRS as $path) {
             $path = $dir . '/' . $path;
@@ -134,7 +132,7 @@ class Installer
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function setFolderPermissions($dir, $io): void
+    public static function setFolderPermissions($dir, $io)
     {
         // Change the permissions on a path and output the results.
         $changePerms = function ($path) use ($io) {
@@ -178,7 +176,7 @@ class Installer
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function setSecuritySalt($dir, $io): void
+    public static function setSecuritySalt($dir, $io)
     {
         $newKey = hash('sha256', Security::randomBytes(64));
         static::setSecuritySaltInFile($dir, $io, $newKey, 'app.php');
@@ -193,7 +191,7 @@ class Installer
      * @param string $file A path to a file relative to the application's root
      * @return void
      */
-    public static function setSecuritySaltInFile($dir, $io, $newKey, $file): void
+    public static function setSecuritySaltInFile($dir, $io, $newKey, $file)
     {
         $config = $dir . '/config/' . $file;
         $content = file_get_contents($config);
@@ -224,7 +222,7 @@ class Installer
      * @param string $file A path to a file relative to the application's root
      * @return void
      */
-    public static function setAppNameInFile($dir, $io, $appName, $file): void
+    public static function setAppNameInFile($dir, $io, $appName, $file)
     {
         $config = $dir . '/config/' . $file;
         $content = file_get_contents($config);
