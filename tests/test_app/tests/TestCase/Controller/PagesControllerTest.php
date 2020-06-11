@@ -14,7 +14,7 @@ declare(strict_types=1);
  * @since         1.2.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Test\TestCase\Controller;
+namespace App\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
@@ -69,7 +69,7 @@ class PagesControllerTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testMissingTemplateInDebug()
+    public function testMissingTemplateInDebug(): void
     {
         Configure::write('debug', true);
         $this->get('/pages/not_existing');
@@ -85,7 +85,7 @@ class PagesControllerTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testDirectoryTraversalProtection()
+    public function testDirectoryTraversalProtection(): void
     {
         Configure::write('debug', false);
         $this->get('/pages/../Layout/ajax');

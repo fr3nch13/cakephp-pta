@@ -6,5 +6,5 @@
 use Cake\Core\Configure;
 
 Configure::write('Pta', [
-    'test' => 'TEST'
+    'test' => 'TEST',
 ]);

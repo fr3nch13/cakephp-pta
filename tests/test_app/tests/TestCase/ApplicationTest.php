@@ -14,15 +14,14 @@ declare(strict_types=1);
  * @since         3.3.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PtaApp\Test\TestCase;
+namespace App\Test\TestCase;
 
+use App\Application;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 use Cake\TestSuite\IntegrationTestCase;
-use InvalidArgumentException;
-use PtaApp\Application;
 
 /**
  * ApplicationTest class
@@ -34,7 +33,7 @@ class ApplicationTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testBootstrap()
+    public function testBootstrap(): void
     {
         $app = new Application(dirname(dirname(__DIR__)) . '/config');
         $app->bootstrap();
@@ -49,31 +48,11 @@ class ApplicationTest extends IntegrationTestCase
     }
 
     /**
-     * testBootstrapPluginWitoutHalt
-     *
-     * @return void
-     */
-    public function testBootstrapPluginWithoutHalt()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        $app = $this->getMockBuilder(Application::class)
-            ->setConstructorArgs([dirname(dirname(__DIR__)) . '/config'])
-            ->setMethods(['addPlugin'])
-            ->getMock();
-
-        $app->method('addPlugin')
-            ->will($this->throwException(new InvalidArgumentException('test exception.')));
-
-        $app->bootstrap();
-    }
-
-    /**
      * testMiddleware
      *
      * @return void
      */
-    public function testMiddleware()
+    public function testMiddleware(): void
     {
         $app = new Application(dirname(dirname(__DIR__)) . '/config');
         $middleware = new MiddlewareQueue();

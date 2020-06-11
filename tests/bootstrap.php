@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /**
- * Test suite bootstrap for ContactManager.
+ * Test suite bootstrap.
  *
  * This function is used to find the location of CakePHP whether CakePHP
  * has been installed as a dependency of the plugin, or the plugin is itself
@@ -11,4 +11,4 @@ declare(strict_types=1);
 
 $root = dirname(__DIR__);
 chdir($root);
-require_once $root . DS . 'tests' . DS . 'plugin_bootstrap.php';
+require_once __DIR__ . DS . 'plugin_bootstrap.php';

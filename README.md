@@ -4,6 +4,7 @@
 [![Coverage](https://codecov.io/gh/fr3nch13/cakephp-pta/branch/master/graph/badge.svg)](https://codecov.io/gh/fr3nch13/cakephp-pta)
 [![Total Downloads](https://img.shields.io/packagist/dt/fr3nch13/cakephp-pta.svg?style=flat-square)](https://packagist.org/packages/fr3nch13/cakephp-pta)
 [![Latest Stable Version](https://img.shields.io/packagist/v/fr3nch13/cakephp-pta.svg?style=flat-square)](https://packagist.org/packages/fr3nch13/cakephp-pta)
+[![GitHub release](https://img.shields.io/github/release/fr3nch13/cakephp-pta.svg)](https://GitHub.com/fr3nch13/cakephp-pta/releases/)
 
 This CakePHP Plugin is used to emulate a generic App when testing your CakePHP Plugins.
 
@@ -24,6 +25,12 @@ chdir($root);
 require_once $root . '/vendor/fr3nch13/cakephp-pta/tests/plugin_bootstrap.php';
 ```
 
-Then copy the folder from here: `tests/test_app_example` to your plugin's `tests` folder as `test_app`.
+Then copy the folder from here: `tests/test_app` to your plugin's `tests` folder as `test_app`.
 
 Once you've copied over that folder, edit your `test/test_app/src/Application.php`'s `bootstrap()` method to include your plugin. There is an example in that file.
+
+### Version compatibility
+
+The major versions are locked to the major versions of CakePHP.
+- PTA 1.x is locked to CakePHP ^3.8
+- PTA 2.x is locked to CakePHP ^4.0 and requires php 7.3 or higher.
