@@ -16,6 +16,9 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use Cake\Event\EventInterface;
+use Cake\Http\Response;
+
 /**
  * Error Handling Controller
  *
@@ -36,37 +39,15 @@ class ErrorController extends AppController
     }
 
     /**
-     * beforeFilter callback.
-     *
-     * @param \Cake\Event\Event $event Event.
-     * @return \Cake\Http\Response|null
-     */
-    public function beforeFilter(\Cake\Event\Event $event): ?\Cake\Http\Response
-    {
-        return null;
-    }
-
-    /**
      * beforeRender callback.
      *
-     * @param \Cake\Event\Event $event Event.
-     * @return \Cake\Http\Response|null
+     * @param \Cake\Event\EventInterface $event Event.
+     * @return \Cake\Http\Response
      */
-    public function beforeRender(\Cake\Event\Event $event): ?\Cake\Http\Response
+    public function beforeRender(EventInterface $event): Response
     {
         $this->viewBuilder()->setTemplatePath('Error');
 
         return parent::beforeRender($event);
-    }
-
-    /**
-     * afterFilter callback.
-     *
-     * @param \Cake\Event\Event $event Event.
-     * @return \Cake\Http\Response|null
-     */
-    public function afterFilter(\Cake\Event\Event $event)
-    {
-        return null;
     }
 }
