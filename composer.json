@@ -26,6 +26,7 @@
         "josegonzalez/dotenv": "3.*",
         "mobiledetect/mobiledetectlib": "2.*",
         "mockery/mockery": "^1.2",
+        "phpcompatibility/php-compatibility": "^9.3",
         "phpstan/phpstan": "^0.12.3",
         "phpunit/phpunit": "^8.0",
         "psy/psysh": "@stable"
