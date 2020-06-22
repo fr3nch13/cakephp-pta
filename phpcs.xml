@@ -2,7 +2,8 @@
 <ruleset name="App">
     <description>App Coding Standard</description>
     <config name="installed_paths" value="../../cakephp/cakephp-codesniffer"/>
-    <config name="installed_paths" value="../../slevomat/coding-standard"/> 
+    <config name="installed_paths" value="../../slevomat/coding-standard"/>
+    <config name="installed_paths" value="../../phpcompatibility/php-compatibility" />
 
     <!-- Allow TODO tags -->
     <rule ref="Generic.Commenting.Todo.CommentFound">
