@@ -10,9 +10,6 @@ namespace Fr3nch13\Pta;
 use Cake\Core\BasePlugin;
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
-use Cake\Core\PluginApplicationInterface;
-use Cake\Routing\Route\DashedRoute;
-use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 
 /**
@@ -28,8 +25,18 @@ class Plugin extends BasePlugin
      * @param \Cake\Core\PluginApplicationInterface $app The app object.
      * @return void
      */
-    public function bootstrap(PluginApplicationInterface $app): void
+    public function bootstrap(\Cake\Core\PluginApplicationInterface $app): void
     {
+        // Add constants, load configuration defaults.
+        Configure::write('Pta', [
+            'test' => 'TEST',
+        ]);
+        if (!Configure::read('Orgs')) {
+            Configure::write('Orgs', [
+                'test' => 'TEST',
+            ]);
+        }
+
         // Call parent to load bootstrap from files.
         parent::bootstrap($app);
 
@@ -52,14 +59,14 @@ class Plugin extends BasePlugin
      * @param \Cake\Routing\RouteBuilder $routes The passed routes object.
      * @return void
      */
-    public function routes(RouteBuilder $routes): void
+    public function routes(\Cake\Routing\RouteBuilder $routes): void
     {
         // Add routes.
         Router::plugin(
             'Fr3nch13/Pta',
             ['path' => '/pta'],
-            function (RouteBuilder $routes) {
-                $routes->fallbacks(DashedRoute::class);
+            function (\Cake\Routing\RouteBuilder $routes) {
+                $routes->fallbacks(\Cake\Routing\Route\DashedRoute::class);
             }
         );
 
@@ -73,14 +80,14 @@ class Plugin extends BasePlugin
      * @param \Cake\Core\PluginApplicationInterface $app The app object.
      * @return void
      */
-    protected function bootstrapCli(PluginApplicationInterface $app): void
+    protected function bootstrapCli(\Cake\Core\PluginApplicationInterface $app): void
     {
         try {
             $app->addPlugin('Bake');
             if (Configure::read('debug')) {
                 $app->addPlugin('IdeHelper');
             }
-        } catch (MissingPluginException $e) {
+        } catch (\Cake\Core\Exception\MissingPluginException $e) {
             // Do not halt if the plugin is missing
         }
         // Load more plugins here

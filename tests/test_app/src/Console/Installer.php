@@ -51,7 +51,7 @@ class Installer
      * @throws \Exception Exception raised by validator.
      * @return void
      */
-    public static function postInstall(Event $event): void
+    public static function postInstall(\Composer\Script\Event $event): void
     {
         $io = $event->getIO();
 
