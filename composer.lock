@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "59f1fd468caac98fdc0af0c026d566df",
+    "content-hash": "48db49a9b6e5616f6ec3798a6f1b1132",
     "packages": [
         {
             "name": "aura/intl",
@@ -112,16 +112,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "4.1.6",
+            "version": "4.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "d8c526bb3e5640235282d189fb071e9c800b4f49"
+                "reference": "9cb11c941566cae80a825889a2c007e1860abbd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/d8c526bb3e5640235282d189fb071e9c800b4f49",
-                "reference": "d8c526bb3e5640235282d189fb071e9c800b4f49",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/9cb11c941566cae80a825889a2c007e1860abbd3",
+                "reference": "9cb11c941566cae80a825889a2c007e1860abbd3",
                 "shasum": ""
             },
             "require": {
@@ -178,7 +178,6 @@
                     "src/Core/functions.php",
                     "src/Collection/functions.php",
                     "src/I18n/functions.php",
-                    "src/Routing/functions.php",
                     "src/Utility/bootstrap.php"
                 ]
             },
@@ -211,7 +210,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2020-11-08T02:26:32+00:00"
+            "time": "2020-06-23T01:38:09+00:00"
         },
         {
             "name": "cakephp/cakephp-codesniffer",
@@ -327,20 +326,20 @@
         },
         {
             "name": "cakephp/debug_kit",
-            "version": "4.3.5",
+            "version": "4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "ef39d978c8421e06f6c5caee126c34edbef1d76e"
+                "reference": "940a0214947e85bbaa0724acfda852f64831f04f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/ef39d978c8421e06f6c5caee126c34edbef1d76e",
-                "reference": "ef39d978c8421e06f6c5caee126c34edbef1d76e",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/940a0214947e85bbaa0724acfda852f64831f04f",
+                "reference": "940a0214947e85bbaa0724acfda852f64831f04f",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^4.1",
+                "cakephp/cakephp": "^4.0",
                 "cakephp/chronos": "^2.0",
                 "composer/composer": "^1.3",
                 "jdorn/sql-formatter": "^1.2",
@@ -389,7 +388,7 @@
                 "issues": "https://github.com/cakephp/debug_kit/issues",
                 "source": "https://github.com/cakephp/debug_kit"
             },
-            "time": "2020-10-08T06:09:00+00:00"
+            "time": "2020-06-10T01:37:18+00:00"
         },
         {
             "name": "cakephp/migrations",
