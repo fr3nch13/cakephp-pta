@@ -29,7 +29,7 @@ class ConsoleShell extends Shell
     /**
      * Start the shell and interactive console.
      *
-     * @return int|null
+     * @return null|int
      */
     public function main(): ?int
     {
