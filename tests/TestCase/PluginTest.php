@@ -26,26 +26,6 @@ class PluginTest extends TestCase
     use IntegrationTestTrait;
 
     /**
-     * setUp method
-     *
-     * @return void
-     */
-    public function setUp(): void
-    {
-        parent::setUp();
-    }
-
-    /**
-     * tearDown method
-     *
-     * @return void
-     */
-    public function tearDown(): void
-    {
-        parent::tearDown();
-    }
-
-    /**
      * testBootstrap
      *
      * @return void
