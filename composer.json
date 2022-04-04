@@ -71,6 +71,10 @@
         "coverage-text": "vendor/bin/phpunit --coverage-text --colors=never"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "cakephp/plugin-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
