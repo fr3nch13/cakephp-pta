@@ -154,16 +154,16 @@ ServerRequest::addDetector('tablet', function ($request) {
  */
 /** @var \Cake\Database\Type\TimeType $timeType */
 $timeType = Type::build('time');
-$timeType->useImmutable();
+$timeType->useLocaleParser();
 /** @var \Cake\Database\Type\DateType $timeType */
 $timeType = Type::build('date');
-$timeType->useImmutable();
+$timeType->useLocaleParser();
 /** @var \Cake\Database\Type\DateTimeType $timeType */
 $timeType = Type::build('datetime');
-$timeType->useImmutable();
+$timeType->useLocaleParser();
 /** @var \Cake\Database\Type\DateTimeType $timeType */
 $timeType = Type::build('timestamp');
-$timeType->useImmutable();
+$timeType->useLocaleParser();
 
 // Ensure default test connection is defined
 if (!getenv('db_class')) {
