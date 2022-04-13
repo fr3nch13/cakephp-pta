@@ -48,13 +48,7 @@ class PluginTest extends TestCase
      */
     public function testRoutes()
     {
-        $app = new Application(CONFIG);
-        $app->bootstrap();
-        $app->pluginBootstrap();
-        $collection = new RouteCollection();
-        $routeBuilder = new RouteBuilder($collection, '');
-        $app->pluginRoutes($routeBuilder);
-        $plugins = $app->getPlugins();
+        $this->loadPlugins(['Fr3nch13/Pta']);
 
         $url = Router::url(['plugin' => 'Fr3nch13/Pta', 'controller' => 'App']);
 

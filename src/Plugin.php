@@ -62,7 +62,7 @@ class Plugin extends BasePlugin
     public function routes(\Cake\Routing\RouteBuilder $routes): void
     {
         // Add routes.
-        Router::plugin(
+        $routes->plugin(
             'Fr3nch13/Pta',
             ['path' => '/pta'],
             function (\Cake\Routing\RouteBuilder $routes) {
