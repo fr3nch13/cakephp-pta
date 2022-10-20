@@ -1,27 +1,25 @@
 <?php
 declare(strict_types=1);
-
 /**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
+ * @var \App\View\AppView $this
  */
 
-$this->layout = false;
+use Cake\Cache\Cache;
+use Cake\Core\Configure;
+use Cake\Core\Plugin;
+use Cake\Datasource\ConnectionManager;
+use Cake\Error\Debugger;
+use Cake\Http\Exception\NotFoundException;
+
+$this->setLayout('ajax');
 
 if (!Configure::read('debug')) :
     throw new NotFoundException(
         'Please replace src/Template/Pages/home.ctp with your own version or re-enable debug mode.'
     );
 endif;
+
+$rootDir = getenv('ROOT') ?? dirname(dirname(__DIR__));
 
 $cakeDescription = 'CakePHP: the rapid development PHP framework';
 ?>
@@ -101,13 +99,13 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <div class="columns large-6">
         <h4>Filesystem</h4>
         <ul>
-        <?php if (is_writable(TMP)) : ?>
+        <?php if (is_writable($rootDir . DS . 'tmp')) : ?>
             <li class="bullet success">Your tmp directory is writable.</li>
         <?php else : ?>
             <li class="bullet problem">Your tmp directory is NOT writable.</li>
         <?php endif; ?>
 
-        <?php if (is_writable(LOGS)) : ?>
+        <?php if (is_writable($rootDir . DS . 'logs')) : ?>
             <li class="bullet success">Your logs directory is writable.</li>
         <?php else : ?>
             <li class="bullet problem">Your logs directory is NOT writable.</li>
@@ -132,6 +130,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
             /** @var \Cake\Database\Connection $connection */
             $connection = ConnectionManager::get('default');
             $connected = $connection->connect();
+            $errorMsg = null;
         } catch (Exception $connectionError) {
             $connected = false;
             $errorMsg = $connectionError->getMessage();
