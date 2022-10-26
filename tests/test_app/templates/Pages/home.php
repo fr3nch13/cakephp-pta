@@ -19,8 +19,6 @@ if (!Configure::read('debug')) :
     );
 endif;
 
-$rootDir = getenv('ROOT') ?? dirname(dirname(__DIR__));
-
 $cakeDescription = 'CakePHP: the rapid development PHP framework';
 ?>
 <!DOCTYPE html>
