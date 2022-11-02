@@ -14,20 +14,18 @@ declare(strict_types=1);
  * @since     3.0.0
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Console;
 
 if (!defined('STDIN')) {
     define('STDIN', fopen('php://stdin', 'r'));
 }
 
-use Cake\Utility\Security;
-use Composer\Script\Event;
-use Exception;
-
 /**
  * Provides installation hooks for when this application is installed via
  * composer. Customize this class to suit your needs.
  */
+
 class Installer
 {
     /**
@@ -45,49 +43,43 @@ class Installer
     ];
 
     /**
-     * Does some routine installation tasks so people don't have to.
+     * Run post composer install methods
      *
      * @param \Composer\Script\Event $event The composer event object.
-     * @throws \Exception Exception raised by validator.
      * @return void
      */
     public static function postInstall(\Composer\Script\Event $event): void
     {
         $io = $event->getIO();
-
-        $rootDir = dirname(dirname(__DIR__));
-
+        $io->write('Running App\Console\Installer\postInstall');
+        $output = [];
+        exec('pwd', $output);
+        $rootDir = $output[0];
+        $io->write('Root Dir:' . $rootDir);
         static::createAppConfig($rootDir, $io);
         static::createWritableDirectories($rootDir, $io);
-
-        // ask if the permissions should be changed
-        if ($io->isInteractive()) {
-            $validator = function ($arg) {
-                if (in_array($arg, ['Y', 'y', 'N', 'n'])) {
-                    return $arg;
-                }
-                throw new Exception('This is not a valid answer. Please choose Y or n.');
-            };
-            $setFolderPermissions = $io->askAndValidate(
-                '<info>Set Folder Permissions ? (Default to Y)</info> [<comment>Y,n</comment>]? ',
-                $validator,
-                10,
-                'Y'
-            );
-
-            if (in_array($setFolderPermissions, ['Y', 'y'])) {
-                static::setFolderPermissions($rootDir, $io);
-            }
-        } else {
-            static::setFolderPermissions($rootDir, $io);
-        }
-
+        static::setFolderPermissions($rootDir, $io);
         static::setSecuritySalt($rootDir, $io);
+    }
 
-        $class = 'Cake\Codeception\Console\Installer';
-        if (class_exists($class)) {
-            $class::customizeCodeceptionBinary($event);
-        }
+    /**
+     * Run post composer update methods
+     *
+     * @param \Composer\Script\Event $event The composer event object.
+     * @return void
+     */
+    public static function postUpdate(\Composer\Script\Event $event): void
+    {
+        $io = $event->getIO();
+        $io->write('Running App\Console\Installer\postUpdate');
+        $output = [];
+        exec('pwd', $output);
+        $rootDir = $output[0];
+        $io->write('Root Dir:' . $rootDir);
+        static::createAppConfig($rootDir, $io);
+        static::createWritableDirectories($rootDir, $io);
+        static::setFolderPermissions($rootDir, $io);
+        static::setSecuritySalt($rootDir, $io);
     }
 
     /**
@@ -97,13 +89,15 @@ class Installer
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function createAppConfig($dir, $io)
+    public static function createAppConfig(string $dir, \Composer\IO\IOInterface $io): void
     {
+        $io->write('Running App\Console\BaseInstaller\createAppConfig');
         $appConfig = $dir . '/config/app.php';
         $defaultConfig = $dir . '/config/app.default.php';
         if (!file_exists($appConfig)) {
+            $io->write('Creating `' . $appConfig . '` file');
             copy($defaultConfig, $appConfig);
-            $io->write('Created `config/app.php` file');
+            $io->write('Created `' . $appConfig . '` file');
         }
     }
 
@@ -114,11 +108,13 @@ class Installer
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function createWritableDirectories($dir, $io)
+    public static function createWritableDirectories(string $dir, \Composer\IO\IOInterface $io): void
     {
+        $io->write('Running App\Console\BaseInstaller\createWritableDirectories');
         foreach (static::WRITABLE_DIRS as $path) {
             $path = $dir . '/' . $path;
             if (!file_exists($path)) {
+                $io->write('Creating `' . $path . '` directory');
                 mkdir($path);
                 $io->write('Created `' . $path . '` directory');
             }
@@ -134,17 +130,18 @@ class Installer
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function setFolderPermissions($dir, $io)
+    public static function setFolderPermissions(string $dir, \Composer\IO\IOInterface $io): void
     {
+        $io->write('Running App\Console\BaseInstaller\setFolderPermissions');
         // Change the permissions on a path and output the results.
-        $changePerms = function ($path) use ($io) {
-            $currentPerms = fileperms($path) & 0777;
-            $worldWritable = $currentPerms | 0007;
-            if ($worldWritable == $currentPerms) {
+        $changePerms = function ($path, $perms, $io) {
+            // Get permission bits from stat(2) result.
+            $currentPerms = fileperms($path) & 0770;
+            if (($currentPerms & $perms) == $perms) {
                 return;
             }
-
-            $res = chmod($path, $worldWritable);
+            $io->write('Setting permissions on ' . $path);
+            $res = chmod($path, $currentPerms | $perms);
             if ($res) {
                 $io->write('Permissions set on ' . $path);
             } else {
@@ -152,23 +149,28 @@ class Installer
             }
         };
 
-        $walker = function ($dir) use (&$walker, $changePerms) {
-            $files = array_diff(scandir($dir), ['.', '..']);
+        $walker = function ($dir, $perms, $io) use (&$walker, $changePerms) {
+            $files = scandir($dir);
+            if (!$files) {
+                $files = [];
+            }
             foreach ($files as $file) {
+                if ($file === '.' || $file === '..') {
+                    continue;
+                }
                 $path = $dir . '/' . $file;
-
                 if (!is_dir($path)) {
                     continue;
                 }
-
-                $changePerms($path);
-                $walker($path);
+                $changePerms($path, $perms, $io);
+                $walker($path, $perms, $io);
             }
         };
 
-        $walker($dir . '/tmp');
-        $changePerms($dir . '/tmp');
-        $changePerms($dir . '/logs');
+        $worldWritable = bindec('0000000111');
+        $walker($dir . '/tmp', $worldWritable, $io);
+        $changePerms($dir . '/tmp', $worldWritable, $io);
+        $changePerms($dir . '/logs', $worldWritable, $io);
     }
 
     /**
@@ -178,9 +180,10 @@ class Installer
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function setSecuritySalt($dir, $io)
+    public static function setSecuritySalt(string $dir, \Composer\IO\IOInterface $io): void
     {
-        $newKey = hash('sha256', Security::randomBytes(64));
+        $io->write('Running App\Console\BaseInstaller\setSecuritySalt');
+        $newKey = hash('sha256', \Cake\Utility\Security::randomBytes(64));
         static::setSecuritySaltInFile($dir, $io, $newKey, 'app.php');
     }
 
@@ -193,19 +196,29 @@ class Installer
      * @param string $file A path to a file relative to the application's root
      * @return void
      */
-    public static function setSecuritySaltInFile($dir, $io, $newKey, $file)
-    {
+    public static function setSecuritySaltInFile(
+        string $dir,
+        \Composer\IO\IOInterface $io,
+        string $newKey,
+        string $file
+    ): void {
+        $io->write('Running App\Console\BaseInstaller\setSecuritySaltInFile');
         $config = $dir . '/config/' . $file;
-        $content = file_get_contents($config);
-
-        $content = str_replace('__SALT__', $newKey, $content, $count);
-
+        $content = '';
+        $count = 0;
+        if (is_file($config)) {
+            /** @var string $content */
+            $content = file_get_contents($config);
+            if(!$content) {
+                $content = '';
+            }
+            $content = str_replace('__SALT__', $newKey, $content, $count);
+        }
         if ($count == 0) {
             $io->write('No Security.salt placeholder to replace.');
 
             return;
         }
-
         $result = file_put_contents($config, $content);
         if ($result) {
             $io->write('Updated Security.salt value in config/' . $file);
@@ -224,18 +237,29 @@ class Installer
      * @param string $file A path to a file relative to the application's root
      * @return void
      */
-    public static function setAppNameInFile($dir, $io, $appName, $file)
-    {
+    public static function setAppNameInFile(
+        string $dir,
+        \Composer\IO\IOInterface $io,
+        string $appName,
+        string $file
+    ): void {
+        $io->write('Running App\Console\BaseInstaller\setAppNameInFile');
         $config = $dir . '/config/' . $file;
-        $content = file_get_contents($config);
-        $content = str_replace('__APP_NAME__', $appName, $content, $count);
-
+        $content = '';
+        $count = 0;
+        if (is_file($config)) {
+            /** @var string $content */
+            $content = file_get_contents($config);
+            if(!$content) {
+                $content = '';
+            }
+            $content = str_replace('__APP_NAME__', $appName, $content, $count);
+        }
         if ($count == 0) {
             $io->write('No __APP_NAME__ placeholder to replace.');
 
             return;
         }
-
         $result = file_put_contents($config, $content);
         if ($result) {
             $io->write('Updated __APP_NAME__ value in config/' . $file);

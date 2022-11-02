@@ -124,7 +124,9 @@ Cache::setConfig(Configure::consume('Cache'));
 TransportFactory::setConfig(Configure::consume('EmailTransport'));
 Email::setConfig(Configure::consume('Email'));
 Log::setConfig(Configure::consume('Log'));
-Security::setSalt(Configure::consume('Security.salt'));
+/** @var string $salt */
+$salt = Configure::consume('Security.salt');
+\Cake\Utility\Security::setSalt($salt);
 
 /*
  * Setup detectors for mobile and tablet.
@@ -140,6 +142,12 @@ ServerRequest::addDetector('tablet', function ($request) {
     return $detector->isTablet();
 });
 
+// There is no time-specific type in Cake
+\Cake\Database\TypeFactory::map('time', \Cake\Database\Type\TimeType::class);
+\Cake\Database\TypeFactory::map('date', \Cake\Database\Type\DateType::class);
+\Cake\Database\TypeFactory::map('datetime', \Cake\Database\Type\DateTimeType::class);
+\Cake\Database\TypeFactory::map('timestamp', \Cake\Database\Type\DateTimeType::class);
+
 /*
  * Enable immutable time objects in the ORM.
  *
@@ -148,18 +156,19 @@ ServerRequest::addDetector('tablet', function ($request) {
  * locale specific date formats. For details see
  * @link https://book.cakephp.org/3.0/en/core-libraries/internationalization-and-localization.html#parsing-localized-datetime-data
  */
+
 /** @var \Cake\Database\Type\TimeType $timeType */
-$timeType = Type::build('time');
+$timeType = \Cake\Database\TypeFactory::build('time');
 $timeType->useLocaleParser();
-/** @var \Cake\Database\Type\DateType $timeType */
-$timeType = Type::build('date');
-$timeType->useLocaleParser();
-/** @var \Cake\Database\Type\DateTimeType $timeType */
-$timeType = Type::build('datetime');
-$timeType->useLocaleParser();
-/** @var \Cake\Database\Type\DateTimeType $timeType */
-$timeType = Type::build('timestamp');
-$timeType->useLocaleParser();
+/** @var \Cake\Database\Type\DateType $dateType */
+$dateType = \Cake\Database\TypeFactory::build('date');
+$dateType->useLocaleParser();
+/** @var \Cake\Database\Type\DateTimeType $dateTimeType */
+$dateTimeType = \Cake\Database\TypeFactory::build('datetime');
+$dateTimeType->useLocaleParser();
+/** @var \Cake\Database\Type\DateTimeType $timestampType */
+$timestampType = \Cake\Database\TypeFactory::build('timestamp');
+$timestampType->useLocaleParser();
 
 // Ensure default test connection is defined
 if (!getenv('db_class')) {
