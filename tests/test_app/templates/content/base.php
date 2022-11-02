@@ -1,5 +1,10 @@
 <?php
+
 declare(strict_types=1);
+
+/**
+ * @var \App\View\AppView $this
+ */
 
 if (!$this->fetch('page-title')) {
     $this->assign('page-title', __('Base'));
@@ -11,7 +16,7 @@ if (!$this->fetch('page-subtitle')) {
 
 if (!$this->fetch('page-actions')) :
     $this->start('page-actions');
-    $this->end('page-actions');
+    $this->end(); /* page-actions */
 endif;
 
 if (!$this->fetch('page-content')) :
@@ -19,6 +24,6 @@ if (!$this->fetch('page-content')) :
     ?>
 Base template
     <?php
-    $this->end('page-content');
+    $this->end(); /* page-content */
 endif;
 ?>

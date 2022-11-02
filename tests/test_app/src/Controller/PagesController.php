@@ -1,19 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 /**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link      https://cakephp.org CakePHP(tm) Project
- * @since     0.2.9
- * @license   https://opensource.org/licenses/mit-license.php MIT License
+ * PagesController
  */
+
 namespace App\Controller;
 
 use Cake\Core\Configure;
@@ -22,24 +14,41 @@ use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 
 /**
- * Static content controller
+ * Pages Controller
  *
- * This controller will render views from Template/Pages/
+ * Displays the 'static' pages.
  *
- * @link https://book.cakephp.org/3.0/en/controllers/pages-controller.html
+ * @property \Cake\ORM\Table $Pages
  */
 class PagesController extends AppController
 {
     /**
+     * Initialization hook method.
+     *
+     * @return void
+     */
+    public function initialize(): void
+    {
+        parent::initialize();
+
+        $prefix = $this->getRequest()->getParam('prefix');
+
+        // Only allow pages without a prefix to be viewed by non-logged in users.
+        if (!$prefix) {
+            $this->Auth->allow('display');
+        }
+    }
+
+    /**
      * Displays a view
      *
-     * @param array ...$path Path segments.
+     * @param string ...$path Path segments.
      * @return \Cake\Http\Response|null
      * @throws \Cake\Http\Exception\ForbiddenException When a directory traversal attempt.
      * @throws \Cake\Http\Exception\NotFoundException When the view file could not
-     *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
+     * @throws \Cake\View\Exception\MissingTemplateException in debug mode.
      */
-    public function display(...$path): ?\Cake\Http\Response
+    public function display(string ...$path): ?\Cake\Http\Response
     {
         $count = count($path);
         if (!$count) {
@@ -57,7 +66,6 @@ class PagesController extends AppController
             $subpage = $path[1];
         }
         $this->set(compact('page', 'subpage'));
-
         try {
             $this->render(implode('/', $path));
         } catch (MissingTemplateException $exception) {

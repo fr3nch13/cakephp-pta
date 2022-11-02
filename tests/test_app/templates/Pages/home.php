@@ -1,21 +1,17 @@
 <?php
 declare(strict_types=1);
-
 /**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
+ * @var \App\View\AppView $this
  */
 
-$this->layout = false;
+use Cake\Cache\Cache;
+use Cake\Core\Configure;
+use Cake\Core\Plugin;
+use Cake\Datasource\ConnectionManager;
+use Cake\Error\Debugger;
+use Cake\Http\Exception\NotFoundException;
+
+$this->setLayout('ajax');
 
 if (!Configure::read('debug')) :
     throw new NotFoundException(
@@ -132,6 +128,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
             /** @var \Cake\Database\Connection $connection */
             $connection = ConnectionManager::get('default');
             $connected = $connection->connect();
+            $errorMsg = null;
         } catch (Exception $connectionError) {
             $connected = false;
             $errorMsg = $connectionError->getMessage();
