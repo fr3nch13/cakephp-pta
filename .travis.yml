@@ -2,7 +2,7 @@ language: php
 os: linux
 
 php:
-    - 8.2
+    - 8.1
 
 env:
     global:
@@ -12,7 +12,7 @@ env:
 jobs:
     fast_finish: true
     include:
-        - php: 8.2
+        - php: 8.1
           env: COVERAGE=1
 
 install:
