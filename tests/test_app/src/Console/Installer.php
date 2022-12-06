@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -200,7 +199,7 @@ class Installer
         if (is_file($config)) {
             /** @var string $content */
             $content = file_get_contents($config);
-            if(!$content) {
+            if (!$content) {
                 $content = '';
             }
             $content = str_replace('__SALT__', $newKey, $content, $count);
@@ -241,7 +240,7 @@ class Installer
         if (is_file($config)) {
             /** @var string $content */
             $content = file_get_contents($config);
-            if(!$content) {
+            if (!$content) {
                 $content = '';
             }
             $content = str_replace('__APP_NAME__', $appName, $content, $count);

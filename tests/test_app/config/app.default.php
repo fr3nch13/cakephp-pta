@@ -9,7 +9,7 @@ use Cake\Log\Engine\FileLog;
 use Cake\Mailer\Transport\MailTransport;
 
 if (!defined('WWW_ROOT')) {
-    include('paths.php');
+    include 'paths.php';
 }
 
 return [
