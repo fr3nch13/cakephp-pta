@@ -126,7 +126,7 @@ Email::setConfig(Configure::consume('Email'));
 Log::setConfig(Configure::consume('Log'));
 /** @var string $salt */
 $salt = Configure::consume('Security.salt');
-\Cake\Utility\Security::setSalt($salt);
+Security::setSalt($salt);
 
 /*
  * Setup detectors for mobile and tablet.

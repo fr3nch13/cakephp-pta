@@ -31,6 +31,14 @@ use Cake\Routing\Middleware\RoutingMiddleware;
  */
 class Application extends BaseApplication
 {
+    function __construct(
+        string $configDir,
+        ?\Cake\Event\EventManagerInterface $eventManager = null,
+        ?\Cake\Http\ControllerFactoryInterface $controllerFactory = null
+    ) {
+        parent::__construct($configDir, $eventManager, $controllerFactory);
+    }
+
     /**
      * @inheritDoc
      */
