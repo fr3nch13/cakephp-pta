@@ -46,8 +46,7 @@
     },
     "scripts": {
         "pre-commit": [
-            "@ci",
-            "echo 'PHP Documentation will be added here.'"
+            "@ci"
         ],
         "ci": [
             "@check",

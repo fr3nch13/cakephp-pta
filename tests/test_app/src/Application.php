@@ -31,7 +31,14 @@ use Cake\Routing\Middleware\RoutingMiddleware;
  */
 class Application extends BaseApplication
 {
-    function __construct(
+    /**
+     * The constructor, mainly here to appease vscode's php static analyzer.
+     * 
+     * @param string $configDir
+     * @param \Cake\Event\EventManagerInterface|null $eventManager
+     * @param \Cake\Http\ControllerFactoryInterface|null $controllerFactory
+     */
+    public function __construct(
         string $configDir,
         ?\Cake\Event\EventManagerInterface $eventManager = null,
         ?\Cake\Http\ControllerFactoryInterface $controllerFactory = null
