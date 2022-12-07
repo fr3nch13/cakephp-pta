@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 /**
  * @var \App\View\AppView $this
+ * @var \Cake\Database\StatementInterface $error
  * @var string $message
- * @var \Error $error
+ * @var string $url
  */
-
-$message = $this->get('message', '');
 
 use Cake\Core\Configure;
 use Cake\Error\Debugger;
@@ -52,3 +51,4 @@ endif;
     <strong><?= __d('cake', 'Error') ?>: </strong>
     <?= h($message) ?>
 </p>
+

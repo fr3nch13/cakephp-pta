@@ -9,8 +9,6 @@ namespace Fr3nch13\Pta\Test\TestCase;
 
 use App\Application;
 use Cake\Core\Configure;
-use Cake\Routing\RouteBuilder;
-use Cake\Routing\RouteCollection;
 use Cake\Routing\Router;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;

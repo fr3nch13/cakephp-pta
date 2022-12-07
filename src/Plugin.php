@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -11,7 +10,9 @@ namespace Fr3nch13\Pta;
 use Cake\Core\BasePlugin;
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
-use Cake\Routing\Router;
+use Cake\Core\PluginApplicationInterface;
+use Cake\Routing\Route\DashedRoute;
+use Cake\Routing\RouteBuilder;
 
 /**
  * CakePHP PTA Plugin
@@ -26,7 +27,7 @@ class Plugin extends BasePlugin
      * @param \Cake\Core\PluginApplicationInterface $app The app object.
      * @return void
      */
-    public function bootstrap(\Cake\Core\PluginApplicationInterface $app): void
+    public function bootstrap(PluginApplicationInterface $app): void
     {
         // Add constants, load configuration defaults.
         Configure::write('Pta', [
@@ -60,14 +61,14 @@ class Plugin extends BasePlugin
      * @param \Cake\Routing\RouteBuilder $routes The passed routes object.
      * @return void
      */
-    public function routes(\Cake\Routing\RouteBuilder $routes): void
+    public function routes(RouteBuilder $routes): void
     {
         // Add routes.
         $routes->plugin(
             'Fr3nch13/Pta',
             ['path' => '/pta'],
-            function (\Cake\Routing\RouteBuilder $routes) {
-                $routes->fallbacks(\Cake\Routing\Route\DashedRoute::class);
+            function (RouteBuilder $routes) {
+                $routes->fallbacks(DashedRoute::class);
             }
         );
 
@@ -81,14 +82,14 @@ class Plugin extends BasePlugin
      * @param \Cake\Core\PluginApplicationInterface $app The app object.
      * @return void
      */
-    protected function bootstrapCli(\Cake\Core\PluginApplicationInterface $app): void
+    protected function bootstrapCli(PluginApplicationInterface $app): void
     {
         try {
             $app->addPlugin('Bake');
             if (Configure::read('debug')) {
                 $app->addPlugin('IdeHelper');
             }
-        } catch (\Cake\Core\Exception\MissingPluginException $e) {
+        } catch (MissingPluginException $e) {
             // Do not halt if the plugin is missing
         }
         // Load more plugins here
