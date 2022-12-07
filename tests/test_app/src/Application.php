@@ -35,8 +35,8 @@ class Application extends BaseApplication
      * The constructor, mainly here to appease vscode's php static analyzer.
      *
      * @param string $configDir
-     * @param \Cake\Event\EventManagerInterface|null $eventManager
-     * @param \Cake\Http\ControllerFactoryInterface|null $controllerFactory
+     * @param \Cake\Event\EventManagerInterface<mixed>|null $eventManager
+     * @param \Cake\Http\ControllerFactoryInterface<\Cake\Controller\Controller>|null $controllerFactory
      */
     public function __construct(
         string $configDir,
