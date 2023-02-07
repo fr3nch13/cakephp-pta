@@ -11,3 +11,5 @@ docs/**/*.php
 !/tests/test_app/tmp/*.gitkeep
 .phpunit.result.cache
 tests/test_app/config/.env
+.vscode
+composer.lock

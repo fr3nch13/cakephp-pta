@@ -15,7 +15,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.4",
+        "php": "~7.4|~8.0",
         "cakephp/bake": "^2.8",
         "cakephp/cakephp": "~4.4.8",
         "cakephp/cakephp-codesniffer": "~4.6",
@@ -29,7 +29,7 @@
         "phpcompatibility/php-compatibility": "^9.3",
         "phpstan/phpstan": "^1.9",
         "phpunit/phpunit": "^9.5",
-        "psy/psysh": "@stable"
+        "staabm/annotate-pull-request-from-checkstyle": "^1.8"
     },
     "autoload": {
         "psr-4": {
@@ -62,8 +62,9 @@
             "@cs-check"
         ],
         "cs-check": "php -d memory_limit=-1 ./vendor/bin/phpcs --colors -p -s --extensions=php ./src ./tests ./config",
+        "cs-checkstyle": "php -d memory_limit=-1 ./vendor/bin/phpcs --report=checkstyle --extensions=php ./src ./tests ./config",
         "cs-fix": "php -d memory_limit=-1 ./vendor/bin/phpcbf --colors --extensions=php ./src ./tests ./config",
-        "phpstan": "php -d memory_limit=-1 ./vendor/bin/phpstan --no-progress -vvv",
+        "phpstan": "php -d memory_limit=-1 ./vendor/bin/phpstan --no-progress -vvv --error-format=github",
         "test": "php -d memory_limit=-1 ./vendor/bin/phpunit --colors=always",
         "coverage": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage",
         "coverage-clover": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --coverage-clover=tmp/coverage.xml",
