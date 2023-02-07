@@ -43,15 +43,16 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php-version }}
+        php-version: '7.4'
         extensions: mbstring, intl
-        coverage: none
+        coverage: pcov
 
     - name: Composer install
       run: composer install
 
     - name: Run PHPUnit
-      run: composer run-script test
+      run: |
+        - composer run-script coverage
 
   coding-standard:
     name: Coding Standard
