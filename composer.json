@@ -67,7 +67,7 @@
         "phpstan": "php -d memory_limit=-1 ./vendor/bin/phpstan --no-progress -vvv --error-format=github",
         "test": "php -d memory_limit=-1 ./vendor/bin/phpunit --colors=always",
         "coverage": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage",
-        "coverage-clover": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml",
+        "coverage-clover": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --coverage-clover=tmp/coverage.xml",
         "coverage-text": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --coverage-text --colors=never"
     },
     "config": {
