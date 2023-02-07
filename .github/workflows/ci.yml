@@ -51,8 +51,7 @@ jobs:
       run: composer install
 
     - name: Run PHPUnit
-      run: |
-        - composer run-script coverage
+      run: composer run-script coverage
 
   coding-standard:
     name: Coding Standard
