@@ -12,3 +12,4 @@ docs/**/*.php
 .phpunit.result.cache
 tests/test_app/config/.env
 .vscode
+composer.lock
