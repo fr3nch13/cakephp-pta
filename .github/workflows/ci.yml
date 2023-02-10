@@ -14,8 +14,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.4', '8.0', '8.1', '8.2']
-    name: Test PHP ${{ matrix.php-version }}
+        php-version: ['7.4', '8.0', '8.1', '8.2', 'latest']
+    name: Test - PHP - ${{ matrix.php-version }}
 
     steps:
     - uses: actions/checkout@v3
@@ -35,7 +35,11 @@ jobs:
   
   coverage-php:
     runs-on: ubuntu-22.04
-    name: Coverage
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['7.4', '8.0', '8.1', '8.2', 'latest']
+    name: Coverage - PHP - ${{ matrix.php-version }}
 
     steps:
     - uses: actions/checkout@v3
@@ -43,7 +47,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'
+        php-version: ${{ matrix.php-version }}
         extensions: mbstring, intl
         coverage: pcov
 
@@ -61,8 +65,12 @@ jobs:
         verbose: true
 
   coding-standard:
-    name: Coding Standard
     runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['7.4', '8.0', '8.1', '8.2', 'latest']
+    name: Coding Standard - PHP - ${{ matrix.php-version }}
 
     steps:
     - uses: actions/checkout@v3
@@ -70,7 +78,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'
+        php-version: ${{ matrix.php-version }}
         extensions: mbstring, intl
         coverage: none
 
@@ -85,8 +93,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.4', '8.0', '8.1', '8.2']
-    name: Static Analysis - PHP ${{ matrix.php-version }}
+        php-version: ['7.4', '8.0', '8.1', '8.2', 'latest']
+    name: Static Analysis - PHP -  ${{ matrix.php-version }}
 
     steps:
     - uses: actions/checkout@v3
