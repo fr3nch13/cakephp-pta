@@ -1,18 +1,8 @@
 <?php
-
 declare(strict_types=1);
-
 /**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         3.0.0
- * @license       MIT License (https://opensource.org/licenses/mit-license.php)
+ * use if !defined to allow the plugin that's using this to overwrite what it needs to.
+ * mainly it would overwrite the TESTS to point to it's tests directory.
  */
 
 /**
@@ -39,43 +29,62 @@ if (!defined('ROOT')) {
  * The actual directory name for the application directory. Normally
  * named 'src'.
  */
-define('APP_DIR', 'src');
+if (!defined('APP_DIR')) {
+    define('APP_DIR', 'src');
+}
 
 /**
  * Path to the application's directory.
  */
-define('APP', ROOT . DS . APP_DIR . DS);
+if (!defined('APP')) {
+    define('APP', ROOT . DS . APP_DIR . DS);
+}
 
 /**
  * Path to the config directory.
  */
-define('CONFIG', __DIR__ . DS);
+if (!defined('CONFIG')) {
+    define('CONFIG', __DIR__ . DS);
+}
 
 /**
  * File path to the webroot directory.
  */
-define('WWW_ROOT', ROOT . DS . 'webroot' . DS);
+if (!defined('WWW_ROOT')) {
+    define('WWW_ROOT', ROOT . DS . 'webroot' . DS);
+}
 
 /**
  * Path to the tests directory.
  */
-define('TESTS', ROOT . DS . 'tests' . DS);
+if (!defined('TESTS')) {
+    define('TESTS', ROOT . DS . 'tests' . DS);
+}
 
 /**
  * Path to the temporary files directory.
  */
-define('TMP', ROOT . DS . 'tmp' . DS);
+if (!defined('TMP')) {
+    define('TMP', ROOT . DS . 'tmp' . DS);
+}
 
 /**
  * Path to the logs directory.
  */
-define('LOGS', ROOT . DS . 'logs' . DS);
+if (!defined('LOGS')) {
+    define('LOGS', ROOT . DS . 'logs' . DS);
+}
 
 /**
  * Path to the cache files directory. It can be shared between hosts in a multi-server setup.
  */
-define('CACHE', TMP . 'cache' . DS);
+if (!defined('CACHE')) {
+    define('CACHE', TMP . 'cache' . DS);
+}
 
+/**
+ * The root of the plugin.
+ */
 if (!defined('PLUGIN_ROOT')) {
     define('PLUGIN_ROOT', dirname(__DIR__));
 }

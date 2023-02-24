@@ -15,6 +15,7 @@ declare(strict_types=1);
  */
 namespace App\View;
 
+use Cake\Core\Configure;
 use Cake\View\View;
 
 /**
@@ -37,5 +38,11 @@ class AppView extends View
      */
     public function initialize(): void
     {
+        // Load Middleware from the plugin we're testing.
+        if (Configure::check('Tests.Helpers')) {
+            foreach (Configure::read('Tests.Helpers') as $name => $config) {
+                $this->loadHelper($name, $config);
+            }
+        }
     }
 }

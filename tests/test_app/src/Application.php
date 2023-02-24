@@ -68,6 +68,13 @@ class Application extends BaseApplication
 
         // Load more plugins here
         $this->addPlugin('Fr3nch13/Pta');
+
+        // Load plugins defined in Configure. see the plugin's tests/bootstrap.php
+        if (Configure::check('Tests.Plugins')) {
+            foreach (Configure::read('Tests.Plugins') as $value) {
+                $this->addPlugin($value);
+            }
+        }
     }
 
     /**
@@ -96,6 +103,14 @@ class Application extends BaseApplication
             // `new RoutingMiddleware($this, '_cake_routes_')`
             ->add(new RoutingMiddleware($this));
 
+        // Load Middleware from the plugin we're testing.
+        if (Configure::check('Tests.Middleware')) {
+            foreach (Configure::read('Tests.Middleware') as $name => $config) {
+                /** @var \Psr\Http\Server\MiddlewareInterface $name */
+                $middlewareQueue->add(new $name($config));
+            }
+        }
+
         return $middlewareQueue;
     }
 
@@ -111,5 +126,12 @@ class Application extends BaseApplication
         }
         // Load more plugins here
         $this->addPlugin('Migrations');
+
+        // Load plugins defined in Configure. see the plugin's tests/bootstrap.php
+        if (Configure::check('Tests.PluginsCli')) {
+            foreach (Configure::read('Tests.PluginsCli') as $value) {
+                $this->addPlugin($value);
+            }
+        }
     }
 }
