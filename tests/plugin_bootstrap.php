@@ -61,12 +61,18 @@ require PLUGIN_ROOT . DS . 'vendor' . DS . 'autoload.php';
 $envFile = null;
 if (\file_exists(TESTS . '.env')) {
     $envFile = TESTS . '.env';
+} elseif (\file_exists(TESTS . '.env.test')) {
+    $envFile = TESTS . '.env.test';
 } elseif (\file_exists(CONFIG . '.env')) {
     $envFile = CONFIG . '.env';
+} elseif (\file_exists(CONFIG . '.env.test')) {
+    $envFile = CONFIG . '.env.test';
 }
 
-$dotenv = new \Symfony\Component\Dotenv\Dotenv();
-$dotenv->load($envFile);
+if ($envFile) {
+    $dotenv = new \Symfony\Component\Dotenv\Dotenv();
+    $dotenv->load($envFile);
+}
 
 /*
  * Read configuration file and inject configuration into various
