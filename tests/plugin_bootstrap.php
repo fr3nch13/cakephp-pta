@@ -189,17 +189,13 @@ $timestampType->useLocaleParser();
 // Ensure default test connection is defined
 if (!getenv('db_class')) {
     putenv('db_class=Cake\Database\Driver\Sqlite');
-    putenv('db_dsn=sqlite::memory:');
-    putenv('db_database=test');
+    putenv('db_database=:memory:');
 }
 
 $dbconfig = [
-    'className' => 'Cake\Database\Connection',
+    'className' => \Cake\Database\Connection::class,
     'driver' => getenv('db_class'),
-    'dsn' => getenv('db_dsn'),
     'database' => getenv('db_database'),
-    'username' => getenv('db_login'),
-    'password' => getenv('db_password'),
     'timezone' => 'UTC'
 ];
 
