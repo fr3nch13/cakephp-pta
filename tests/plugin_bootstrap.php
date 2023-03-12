@@ -4,17 +4,16 @@
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
-use Cake\Database\Type;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorTrap;
 use Cake\Error\ExceptionTrap;
+use Cake\Filesystem\Folder;
 use Cake\Http\ServerRequest;
 use Cake\Log\Log;
 use Cake\Mailer\Email;
 use Cake\Mailer\TransportFactory;
-use Cake\Routing\DispatcherFactory;
-use Cake\Filesystem\Folder;
 use Cake\Utility\Security;
+use Migrations\TestSuite\Migrator;
 
 $findRoot = function ($root) {
     if (is_dir($root . '/vendor/cakephp/cakephp')) {
@@ -42,7 +41,7 @@ if (!defined('DS')) {
  * Configure paths required to find CakePHP + general filepath
  * constants
  */
-require PLUGIN_ROOT . DS . 'tests' . DS . 'test_app' . DS . 'config' . DS . '/paths.php';
+require __DIR__ . DS . 'test_app' . DS . 'config' . DS . 'paths.php';
 
 /**
  * Bootstrap CakePHP.
@@ -57,6 +56,23 @@ require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
 // Use composer to load the autoloader.
 require PLUGIN_ROOT . DS . 'vendor' . DS . 'autoload.php';
+
+
+$envFile = null;
+if (\file_exists(TESTS . '.env')) {
+    $envFile = TESTS . '.env';
+} elseif (\file_exists(TESTS . '.env.test')) {
+    $envFile = TESTS . '.env.test';
+} elseif (\file_exists(CONFIG . '.env')) {
+    $envFile = CONFIG . '.env';
+} elseif (\file_exists(CONFIG . '.env.test')) {
+    $envFile = CONFIG . '.env.test';
+}
+
+if ($envFile) {
+    $dotenv = new \Symfony\Component\Dotenv\Dotenv();
+    $dotenv->load($envFile);
+}
 
 /*
  * Read configuration file and inject configuration into various
@@ -89,7 +105,6 @@ date_default_timezone_set('UTC');
  */
 (new ErrorTrap(Configure::read('Error')))->register();
 (new ExceptionTrap(Configure::read('Error')))->register();
-
 
 /*
  * Include the CLI bootstrap overrides.
@@ -170,29 +185,31 @@ $dateTimeType->useLocaleParser();
 $timestampType = \Cake\Database\TypeFactory::build('timestamp');
 $timestampType->useLocaleParser();
 
+
 // Ensure default test connection is defined
 if (!getenv('db_class')) {
     putenv('db_class=Cake\Database\Driver\Sqlite');
-    putenv('db_dsn=sqlite::memory:');
-    putenv('db_database=test');
+    putenv('db_database=:memory:');
 }
-ConnectionManager::setConfig('test', [
-    'className' => 'Cake\Database\Connection',
-    'driver' => getenv('db_class'),
-    'dsn' => getenv('db_dsn'),
-    'database' => getenv('db_database'),
-    'username' => getenv('db_login'),
-    'password' => getenv('db_password'),
-    'timezone' => 'UTC'
-]);
-ConnectionManager::setConfig('test_migrations', [
-    'className' => 'Cake\Database\Connection',
-    'driver' => getenv('db_class'),
-    'dsn' => getenv('db_dsn'),
-    'database' => getenv('db_database'),
-    'username' => getenv('db_login'),
-    'password' => getenv('db_password'),
-    'timezone' => 'UTC'
-]);
 
-ConnectionManager::alias('test', 'default');
+$dbconfig = [
+    'className' => \Cake\Database\Connection::class,
+    'driver' => getenv('db_class'),
+    'database' => getenv('db_database'),
+    'timezone' => 'UTC'
+];
+
+if (Configure::check('Tests.DbConfig')) {
+    $dbconfig = Configure::read('Tests.DbConfig');
+}
+
+ConnectionManager::setConfig('default', $dbconfig);
+ConnectionManager::setConfig('test', $dbconfig);
+
+// Migrations
+if (Configure::check('Tests.Migrations')) {
+    $migrations = Configure::read('Tests.Migrations');
+    $migrator = new Migrator();
+
+    $migrator->runMany($migrations);
+}

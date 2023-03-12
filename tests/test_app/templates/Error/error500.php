@@ -39,7 +39,7 @@ if (Configure::read('debug')) :
     <?php
     echo $this->element('auto_table_warning');
 
-    if (extension_loaded('xdebug')) :
+    if (extension_loaded('xdebug') && get_cfg_var("xdebug.mode") === "develop") :
         xdebug_print_function_stack();
     endif;
 
