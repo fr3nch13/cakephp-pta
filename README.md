@@ -1,6 +1,5 @@
 # CakePHP Test App Plugin
 
-[![Build Status](https://travis-ci.org/fr3nch13/cakephp-pta.svg?branch=master)](https://travis-ci.org/fr3nch13/cakephp-pta)
 [![Coverage](https://codecov.io/gh/fr3nch13/cakephp-pta/branch/master/graph/badge.svg)](https://codecov.io/gh/fr3nch13/cakephp-pta)
 [![Total Downloads](https://img.shields.io/packagist/dt/fr3nch13/cakephp-pta.svg?style=flat-square)](https://packagist.org/packages/fr3nch13/cakephp-pta)
 [![Latest Stable Version](https://img.shields.io/packagist/v/fr3nch13/cakephp-pta.svg?style=flat-square)](https://packagist.org/packages/fr3nch13/cakephp-pta)
