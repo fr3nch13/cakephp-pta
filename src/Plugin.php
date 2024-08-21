@@ -51,7 +51,7 @@ class Plugin extends BasePlugin
          * Debug Kit should not be installed on a production system
          */
         if (Configure::read('debug')) {
-            $app->addPlugin(\DebugKit\Plugin::class);
+            $app->addOptionalPlugin(\DebugKit\Plugin::class);
         }
     }
 
