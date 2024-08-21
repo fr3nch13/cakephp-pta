@@ -36,7 +36,7 @@ if (!defined('ROOT')) {
         define('ROOT', PLUGIN_ROOT . DS . 'tests' . DS . 'test_app');
     } else {
         // our test app.
-        define('ROOT', dirname(__DIR__) . DS . 'tests' . DS . 'test_app');
+        define('ROOT', dirname(__DIR__));
     }
 }
 
