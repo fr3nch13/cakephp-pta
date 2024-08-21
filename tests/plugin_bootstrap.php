@@ -42,8 +42,8 @@ if (!defined('DS')) {
  * constants
  */
 // use the application's/plugin's test app if it exists
- if (file_exists(PLUGIN_ROOT . DS . 'test_app' . DS . 'config' . DS . 'paths.php')) {
-    require PLUGIN_ROOT . DS . 'test_app' . DS . 'config' . DS . 'paths.php';
+ if (file_exists(PLUGIN_ROOT . DS . 'tests' . DS . 'test_app' . DS . 'config' . DS . 'paths.php')) {
+    require PLUGIN_ROOT . DS . 'tests' . DS . 'test_app' . DS . 'config' . DS . 'paths.php';
 } else {
     // otherwise use the one here both for testing this plugin, and for ones that don't have a test_app.
     require __DIR__ . DS . 'test_app' . DS . 'config' . DS . 'paths.php';
