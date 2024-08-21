@@ -212,7 +212,7 @@ if (Configure::check('Tests.DbConfig')) {
     $dbconfig = Configure::read('Tests.DbConfig');
     // since the .env files is read AFTER this is set,
     // in the root's bootstrap.php
-    // overwrite it with he env value if it's not null
+    // overwrite it with the .env value if it's not null
     $db_settings = [
         'className' => 'CI_DB_CLASSNAME',
         'driver' => 'CI_DB_DRIVER',
