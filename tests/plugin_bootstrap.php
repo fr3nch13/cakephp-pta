@@ -232,7 +232,7 @@ if (Configure::check('Tests.DbConfig')) {
     ];
 
     foreach ($db_settings as $db_key => $db_constant) {
-        if (env($db_constant, null) !== null) {
+        if (is_string($db_constant) && env($db_constant, null) !== null) {
             $dbconfig[$db_key] = env($db_constant);
         }
     }
