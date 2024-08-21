@@ -63,7 +63,7 @@ class Application extends BaseApplication
          * Debug Kit should not be installed on a production system
          */
         if (Configure::read('debug')) {
-            $this->addPlugin(\DebugKit\Plugin::class);
+            $this->addOptionalPlugin(\DebugKit\Plugin::class);
         }
 
         // Load more plugins here
@@ -72,7 +72,15 @@ class Application extends BaseApplication
         // Load plugins defined in Configure. see the plugin's tests/bootstrap.php
         if (Configure::check('Tests.Plugins')) {
             foreach (Configure::read('Tests.Plugins') as $value) {
-                $this->addPlugin($value);
+                // make sure hooks still works for older plugin style.
+                // see: https://book.cakephp.org/4/en/plugins.html#plugin-hook-configuration
+                // about using Plugin.php
+                $this->addPlugin($value, [
+                    'bootstrap' => true,
+                    'routes' => true,
+                    'middleware' => true,
+                    'console' => true,
+                ]);
             }
         }
     }
@@ -130,7 +138,12 @@ class Application extends BaseApplication
         // Load plugins defined in Configure. see the plugin's tests/bootstrap.php
         if (Configure::check('Tests.PluginsCli')) {
             foreach (Configure::read('Tests.PluginsCli') as $value) {
-                $this->addPlugin($value);
+                $this->addPlugin($value, [
+                    'bootstrap' => true,
+                    'routes' => true,
+                    'middleware' => true,
+                    'console' => true,
+                ]);
             }
         }
     }
