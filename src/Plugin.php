@@ -45,14 +45,6 @@ class Plugin extends BasePlugin
         if (PHP_SAPI === 'cli') {
             $this->bootstrapCli($app);
         }
-
-        /*
-         * Only try to load DebugKit in development mode
-         * Debug Kit should not be installed on a production system
-         */
-        if (Configure::read('debug')) {
-            $app->addOptionalPlugin(\DebugKit\Plugin::class);
-        }
     }
 
     /**
