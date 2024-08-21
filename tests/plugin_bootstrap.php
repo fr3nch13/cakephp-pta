@@ -208,7 +208,34 @@ $dbconfig = [
 ];
 
 if (Configure::check('Tests.DbConfig')) {
+    // read the dbconfig from before the .env file is read.
     $dbconfig = Configure::read('Tests.DbConfig');
+    // since the .env files is read AFTER this is set,
+    // in the root's bootstrap.php
+    // overwrite it with he env value if it's not null
+    $db_settings = [
+        'className' => 'CI_DB_CLASSNAME',
+        'driver' => 'CI_DB_DRIVER',
+        'persistent' => 'CI_DB_PERSISTENT',
+        'host' => 'CI_DB_HOST',
+        'port' => 'CI_DB_PORT',
+        'username' => 'CI_DB_USERNAME',
+        'password' => 'CI_DB_PASSWORD',
+        'database' => 'CI_DB_DATABASE',
+        'encoding' => 'CI_DB_ENCODING',
+        'timezone' => 'CI_DB_TIMEZONE',
+        'flags' => [],
+        'cacheMetadata' => true,
+        'log' => false,
+        'quoteIdentifiers' => true,
+        'url' => 'CI_DB_URL',
+    ];
+
+    foreach ($db_settings as $db_key => $db_constant) {
+        if (env($db_constant, null) !== null) {
+            $dbconfig[$db_key] = env($db_constant);
+        }
+    }
 }
 
 ConnectionManager::setConfig('default', $dbconfig);
