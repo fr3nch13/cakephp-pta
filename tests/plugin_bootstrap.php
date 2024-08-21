@@ -29,6 +29,8 @@ $findRoot = function ($root) {
     throw new Exception("Cannot find the root of the application, unable to run tests");
 };
 
+define('PLUGIN_BOOTSTRAP', __FILE__);
+
 if (!defined('PLUGIN_ROOT')) {
     define('PLUGIN_ROOT', $findRoot(getcwd()));
 }

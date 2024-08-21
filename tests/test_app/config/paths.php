@@ -19,10 +19,25 @@ if (!defined('DS')) {
  */
 
 /**
+ * If this is somehow included without the plugin_bootstrap.php
+ * We need to throw an error
+ */
+if (!defined('PLUGIN_BOOTSTRAP')) {
+    $this_relative_path = str_replace(dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR, '', __FILE__);
+    throw new \Exception('This file shouldn\'t be included by anything other than the plugin_bootstrap.php File: ' . $this_relative_path);
+}
+
+/**
  * The full path to the directory which holds "src", WITHOUT a trailing DS.
  */
 if (!defined('ROOT')) {
-    define('ROOT', dirname(__DIR__));
+    if (is_dir(PLUGIN_ROOT . DS . 'tests' . DS . 'test_app')) {
+        // their test app
+        define('ROOT', PLUGIN_ROOT . DS . 'tests' . DS . 'test_app');
+    } else {
+        // our test app.
+        define('ROOT', dirname(__DIR__) . DS . 'tests' . DS . 'test_app');
+    }
 }
 
 /**
@@ -44,7 +59,7 @@ if (!defined('APP')) {
  * Path to the config directory.
  */
 if (!defined('CONFIG')) {
-    define('CONFIG', __DIR__ . DS);
+    define('CONFIG', ROOT . DS . 'config' . DS);
 }
 
 /**
@@ -58,7 +73,7 @@ if (!defined('WWW_ROOT')) {
  * Path to the tests directory.
  */
 if (!defined('TESTS')) {
-    define('TESTS', ROOT . DS . 'tests' . DS);
+    define('TESTS', PLUGIN_ROOT . DS . 'tests' . DS);
 }
 
 /**
@@ -80,13 +95,6 @@ if (!defined('LOGS')) {
  */
 if (!defined('CACHE')) {
     define('CACHE', TMP . 'cache' . DS);
-}
-
-/**
- * The root of the plugin.
- */
-if (!defined('PLUGIN_ROOT')) {
-    define('PLUGIN_ROOT', dirname(__DIR__));
 }
 
 /**
