@@ -32,7 +32,7 @@ $findRoot = function ($root) {
 define('PLUGIN_BOOTSTRAP', __FILE__);
 
 if (!defined('PLUGIN_ROOT')) {
-    define('PLUGIN_ROOT', $findRoot(getcwd()));
+    define('PLUGIN_ROOT', $findRoot(__DIR__));
 }
 
 if (!defined('DS')) {
